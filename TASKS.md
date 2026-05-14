@@ -5,7 +5,7 @@
 ### Inbox
 
 - Confirm top 3 active projects to keep in focus
-- Clarify exact spelling and domain for AIT AI / AITEIT AI
+- Confirm official website/domain for AiteitAI
 - Decide where ongoing tasks should live: this repo, Notion, or both
 - Choose daily briefing time in IST
 - Define daily briefing sections
@@ -20,16 +20,15 @@
 - Prepare store listing copy checklist
 - Prepare launch announcement plan
 
-### AIT AI / AITEIT AI
+### AiteitAI
 
-- Clarify brand spelling
 - Verify website/domain
 - Define core services and packages
 - Create sales pitch structure
 - Create client intake form structure
 - Create creative production workflow
 
-### SOCIAL
+### Sociaaal
 
 - Document current AI creative workflow
 - Create app concept ideation template

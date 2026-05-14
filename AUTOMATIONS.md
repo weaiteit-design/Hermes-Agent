@@ -22,7 +22,7 @@ Suggested sections:
 3. Startup and business opportunities
 4. Tasks due or worth progressing today
 5. Wise AI launch checklist progress
-6. SOCIAL creative and trend insights
+6. Sociaaal creative and trend insights
 
 ## Questions to confirm
 
@@ -35,7 +35,7 @@ Suggested sections:
 
 - Daily AI and app opportunity briefing
 - Weekly Wise AI launch progress review
-- Weekly SOCIAL creative trend report
+- Weekly Sociaaal creative trend report
 - App idea research digest
-- Client pipeline reminder system for AIT AI / AITEIT AI
+- Client pipeline reminder system for AiteitAI
 - Personal weekly review and planning prompt

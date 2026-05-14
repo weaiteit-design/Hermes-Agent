@@ -24,7 +24,7 @@
 - Prepare launch checklist
 - Create launch content and announcement plan
 
-### AIT AI / AITEIT AI
+### AiteitAI
 
 **Description:** AI-powered creative services startup for clients.
 
@@ -34,21 +34,19 @@
 - Static ads
 - AI-assisted creative production
 
-**Reference:** www.ATTI.com, to be verified and clarified.
-
 **Useful next actions:**
 
-- Clarify exact brand spelling and domain
+- Confirm official website/domain
 - Build service packaging
 - Create offer pages and pitch decks
 - Create client workflow templates
 - Create case study structure
 
-### SOCIAL
+### Sociaaal
 
 **Role:** Generative AI creative director.
 
-**Context:** SOCIAL has multiple apps. Manas works on concepts, execution, creative materials, AI-assisted production, and internal agents/workflows.
+**Context:** Sociaaal has multiple apps. Manas works on concepts, execution, creative materials, AI-assisted production, and internal agents/workflows.
 
 **Responsibilities:**
 
