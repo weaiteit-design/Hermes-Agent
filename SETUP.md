@@ -2,11 +2,13 @@
 
 ## VPS Details
 - **Provider:** Hostinger
-- **IP Address:**
-- **OS:**
-- **CPU / RAM / Storage:**
-- **SSH User:**
-- **Domain (if any):**
+- **IP Address:** 187.127.167.128
+- **OS:** Ubuntu 24.04 with Docker and Traefik
+- **CPU / RAM / Storage:** 2 vCPU / 8 GB / 100 GB
+- **SSH User:** root
+- **Hostname:** HermesAgent.vps
+- **Location:** India — Mumbai 2
+- **Plan:** KVM 2 (expires 2027-05-14, auto-renew on)
 
 ## LLM Provider
 - **Provider:** OpenAI (Codex / GPT-5.5)
@@ -14,8 +16,9 @@
 
 ## Platform Integration
 - **Channel:** Telegram
-- **Bot Token:**
-- **Bot Username:**
+- **Bot Token:** (in .env)
+- **Telegram User ID:** 1295926144
+- **Home Channel:** User DM
 
 ## Deployment Method
 - [ ] Docker (recommended)
