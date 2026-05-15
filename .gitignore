@@ -50,3 +50,16 @@ pdf_pages_preview/
 *.pdf
 *.xlsx
 *.xls
+*.zip
+*.mp4
+*.mp3
+*.ogg
+
+# Generated LMS packaging intermediates / QA renders
+workspace/**/extracted_assets/
+workspace/**/reference_renders/
+workspace/**/video_slides_en/
+workspace/**/video_slides_mr/
+workspace/**/*contact_sheet*.jpg
+workspace/**/qa_*.jpg
+workspace/unzipped_*/
