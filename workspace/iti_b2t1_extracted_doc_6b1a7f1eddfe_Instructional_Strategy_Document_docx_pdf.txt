@@ -1,0 +1,304 @@
+ 
+Instructional Strategy Document (ISD) for Project on AI-Readiness for Trades 
+Course contents - LMS Self-Study Package + Instructor Use Guide 
+1.​ Purpose and Intended Use of this ISD 
+This document defines the instructional strategy and build rules for creating: 
+●​ the self-study LMS package (≈20 hours) for ITI learners in < trade name >, and 
+●​ the Instructor Use Guide that enables classroom and lab instructors to help learners apply what 
+they learned on LMS during regular teaching and practical sessions. 
+It ensures all IDs, writers, SMEs, and reviewers develop assets with a shared understanding of: 
+●​ what the course must achieve; 
+●​ what to include and what to avoid; 
+●​ how to structure and package content consistently for LMS; and 
+●​ how the instructor will integrate AI readiness into classroom and lab sessions. 
+ 
+2.​ Learner, Context, and Design Implications 
+●​ Learners: ITI learners; non-native English speakers; first time on AI-readiness content; learning 
+alongside NCVET trade curriculum. 
+●​ LMS context: self-study only; no simulation/practice on LMS; engagement must be maintained 
+through short, varied micro learning units in each topic. 
+●​ Instructor context: one classroom/lab instructor who teaches trade and runs practical sessions; 
+will integrate AI usage into regular course delivery through the guidelines provided in the 
+Instructor Use Guide. 
+Implications: 
+●​ LMS content must stay at Knowledge + Comprehension only (Bloom’s taxonomy). 
+●​ Language and structure must be simple, predictable, repeatable. 
+●​ Practical application must be driven through the Instructor Use Guide, aligned to 18–20 selected 
+NCVET practical in the specific trades 
+ 
+3.​ Program Goal and Scope Boundary 
+Goal: Prepare learners to recognise AI-enabled/digital support in trade learning and workplace, 
+understand common outputs/alerts, and build “trust vs verify” awareness so that they become 
+confident in using AI in class/lab and at work. 
+LMS scope: awareness + comprehension + safe-use thinking (no hands-on execution). 
+Instructor guide scope: practical integration and class/lab facilitation (how to practice, what prompts 
+to use, what to observe, what evidence to capture etc). 
+4.​ Anchoring to NCVET trades 
+All content must map back to trade realities for the trades. For example for electrical and wiremen 
+trade: wiring/installation, testing & measurement, protection devices, earthing, safe isolation, basic 
+fault identification logic, and documentation/job notes etc. 
+ 
+1 
+© Tata Community Initiatives Trust, All Rights Reserved 
+ 
+
+ 
+Rule: Every topic must reflect the reality of: “Where will a learner see this or do this in class, lab, or 
+workplace?” 
+5.​ Instructional Model for LMS (Simple + Repeatable) 
+ 
+5.1​Topic-level structure (Mandatory Recipe) 
+Structure of a one hour construct: 
+Component/Asset 
+Build Rule 
+Typical 
+Duration 
+Short video 
+“Why it matters” hook + concept + trade-linked 
+example/s 
+3–4 min 
+Micro-read 1 
+Reading Material (2–3 pages); with 
+concept/examples/case studies/scenarios/actual life 
+situations etc.; could include a “Use this in Lab/Class” 
+box/Did you Know/Know more snippet to make an 
+interesting read 
+~15–20 min 
+Micro-read 2 
+(If scope/time permits, 
+there can be more and 
+not limited to 2) 
+Reading Material (2–3 pages); with 
+concept/examples/case studies/scenarios/actual life 
+situations etc.; could include a “Use this in Lab/Class” 
+box/Did you Know/Know more snippet to make an 
+interesting read 
+~15–20 min 
+Assignment  
+Example -“Where will I see this in class/lab/work?”/ 
+Go and find out etc. 
+4 –5 min 
+Topic MCQ check 
+4 MCQs/fill in blanks (at knowledge/comprehension 
+level) 
+10 min 
+ The number of each asset may vary from topic to topic and will depend on the duration of topic. 
+Non-negotiables: 
+●​ Minimum one video per topic (Refer Section 6). 
+●​ At least one of the assets in the topic to include any one or two of the following - Use this in 
+Lab/Class” box/Did you Know/Know more snippet 
+●​ No tasks that require performance, lab execution without instructor, or submission in LMS. 
+5.2 Module-level structure (Mandatory) 
+Each Module must include: 
+Module Element 
+Build Rule 
+Duration 
+Module introduction 
+1 video (PPT template provided: what this module covers + 
+why it matters and topic list 
+~5 min 
+Module summary 
+1 video (PPT template provided): 5 key takeaways + “watch 
+for this in lab” 
+~5 min 
+My Update Habit  
+**1 micro-card (or a box with the Module Summary) that 
+reinforces a repeatable habit learner should carry forward. 
+Example: “One new term/tool I learned”, “One thing I will 
+always verify”, “One place I can check updates 
+(manual/OEM sheet/instructor). 
+~ 2 - 3 min 
+2 
+© Tata Community Initiatives Trust, All Rights Reserved 
+ 
+
+ 
+Module End Quiz 
+To include 3 – 4 MCQs per topic (could be direct/scenario 
+based) 
+15 min 
+ 
+Note: “My Update Habit” can be a standalone slide or the final section post the Module Summary, 
+but it must appear in every module so that staying updated becomes a repeated behaviour, not a 
+one-time message. 
+My Update Habit (2 -3 minutes at the end of every module) 
+Learners reflect on a very short prompt set. This will also be provided in the Instructor Use Guide too 
+so that instructors are aware of this ‘ask’ from learners 
+1.​ One new term/tool/output I noticed today: ________ 
+2.​ One thing I will always verify before acting: ________ 
+3.​ One reliable place I can check when I’m unsure (manual/instructor/OEM sheet): ________ 
+This can be built as: 
+●​ a micro-card at the end of the module summary, or 
+●​ a short 1-page “habit card” learners read and write in their personal notes to share with 
+instructor. 
+5.2​Course-level structure (Mandatory) 
+●​ The course will have a unique Course Overview video with Course description, Course level 
+objectives and list of modules within. 
+●​ The course will end with a Course End Assessment comprising of MCQs only. Each question to 
+have 4 options of which one would be correct. For further guidelines for assessment, please refer 
+to the first sheet in the Assessment template. The MCQs must be created from each module and 
+a total of 8 MCQs per module to be created. 
+ 
+6.​ Engagement Inserts (Mandatory across course) 
+To sustain attention for ~20 hours, each topic must include at least one or two engagement insert 
+within the Reading Materials: 
+Insert Type 
+What it is 
+Where it helps most 
+Did You Know  
+2–3 min read; for eg. A sharp trade-linked 
+insight 
+Relevance, buy-in 
+Workplace Snapshot 
+1-page or short scenario of a real work 
+moment using AI 
+Outputs/alerts, tools 
+Scenario based 
+Reading material 
+1-page situation with 2–3 questions 
+Understanding 
+Know More  
+2–3 min read 
+Get attention 
+ 
+Rule: Engagement inserts must remain trade-anchored; no generic AI stories. 
+7.​ Outcomes and Assessment Standards 
+Outcomes format: “At the end of this topic, you will be able to…” 
+Allowed verbs: identify, list, recognise, state, define, describe, explain,….. 
+3 
+© Tata Community Initiatives Trust, All Rights Reserved 
+ 
+
+ 
+Assessment: MCQs - topic checks + module quizzes + course-end quiz. 
+Question style: simple language; trade context in stems; no lab execution required. 
+8.​ LMS Packaging and Naming Conventions  
+8.1 Why this matters 
+Consistent packaging reduces upload errors, ensures version control, and allows quick updates of 
+examples/scenarios without reworking the full module at a later stage. 
+8.2 Folder structure (delivery package) 
+Deliver the final package in this structure: 
+●​ 01_LMS_Package - Should include all PDFs/videos/quizzes/assignments for each module 
+o​
+B01/ (with all assets) 
+o​
+B02/ 
+o​
+… 
+o​
+B06/ 
+o​
+Course_End_Quiz/ 
+●​ 02_Source_Files/ (editable) 
+o​
+PPT/Doc source files, script docs, design files 
+8.3 File naming convention (strict) 
+Use this pattern:  
+EW_Electrician&Wiremen_Module NumberTopicNumber_AssetType_AssetTitle_vX.Y 
+Examples: 
+●​ EW_E&W_B1T1_VID_A1_v1.0 
+●​ EW_E&W_B3T2_RM_A3_v1.0 
+●​ EW_E&W_B3_ModuleQuiz_v1.0 
+AssetType codes: 
+●​ VID (video) 
+●​ RM (Reading Material) 
+●​ Assmt (Assignment) 
+Versioning rule: 
+●​ v1 → v5 review-ready →Final 
+8.4 LMS sequencing rules (upload order) 
+Within each module, assets must appear in this exact order: 
+●​ Module Intro 
+●​ Topic 1 
+●​ Topic 2 
+●​ Topic 3 (if any) 
+●​ Module Summary 
+●​ Module Quiz 
+4 
+© Tata Community Initiatives Trust, All Rights Reserved 
+ 
+
+ 
+ 
+9.​ Instructor Use Guide (Classroom + Lab Integration) — Strategy & Build Brief 
+9.1 Purpose 
+The Instructor Use Guide enables trade instructors to make learners practice the concepts learned 
+through the Self-study mode during everyday classroom and lab sessions, without creating a 
+separate “AI class.” It provides: 
+●​ where and how to reference LMS learning during teaching, and 
+●​ a structured method to integrate AI into 18–20 selected NCVET practicals. 
+9.2 Instructor approach (how AI is integrated) 
+The instructor will use two modes: 
+A) Classroom integration (during theory or brief class moments) 
+●​ 5–10 minute “AI-linked” prompts during relevant lessons 
+●​ quick discussion questions aligned to LMS topics 
+●​ small check-for-understanding moments (oral / show-of-hands / quick written) 
+B) Lab integration (aligned to selected practical sessions) 
+For each selected practical, instructor will guide learners to use AI as a support tool, e.g.: 
+●​ generating a step checklist before starting 
+●​ listing tools/materials needed 
+●​ predicting common mistakes 
+●​ interpreting what a reading/output could indicate (conceptual) 
+●​ writing a simple job note after completion 
+Important boundary: AI is used to support learning and reasoning, while the instructor ensures all 
+work follows safety and trade procedures. 
+9.3 What the Instructor Use Guide must contain (deliverable structure) 
+The guide should be built as a simple, field-friendly document with the following sections: 
+1.​ Introduction 
+o​
+Note to Instructor (1/2 page) 
+o​
+how to use the guide week-to-week 
+o​
+how to connect LMS modules to class/lab 
+2.​ Classroom “AI Moments” Toolkit 
+o​
+ready prompts + questions mapped to LMS modules (short, simple language) 
+3.​ Lab Practical Integration Pack (Core section) 
+o​
+a list of 18–20 selected NCVET practicals (Electrician/Wireman common practicals) 
+o​
+for each practical, include a one-page “AI Add-on Card” (template below) 
+4.​ Safety and Verification Reminders 
+o​
+where learners must verify manually, and what not to rely on AI for 
+5.​ Observation and Evidence Capture (lightweight) 
+o​
+simple ways to note participation and readiness without heavy paperwork (rubrik, check list 
+etc.) 
+5 
+© Tata Community Initiatives Trust, All Rights Reserved 
+ 
+
+ 
+9.4 “AI Add-on Card” template (one page per practical) 
+Each selected practical must include: 
+●​ Practical Name (NCVET wording) 
+●​ What learners already do in this practical (1–2 lines) 
+●​ Where AI can help learning (before / during / after) 
+●​ Suggested AI prompts (3–5 prompts, in simple English) 
+●​ Instructor questions (3 questions) to check understanding 
+●​ Safety & verification reminder (2–3 bullets) 
+●​ Space for expected learner output (non-submission) 
+o​
+e.g., checklist, tool list, “common mistakes” list, 4-line job note 
+●​ Evidence the instructor can capture quickly (tick/notes) 
+o​
+e.g., “learner produced checklist” / “learner explained reading meaning” 
+9.5 Instructor Guide packaging and naming 
+Deliver as: 
+EW_E&W_InstructorUseGuide  
+10.​Quality Gate (for LMS + Instructor Guide) 
+Before final sign-off: 
+●​ LMS checks 
+●​ every topic has the full asset recipe 
+●​ at least one engagement insert per topic 
+●​ MCQs match knowledge/comprehension 
+●​ sequencing and naming conventions followed 
+●​ Instructor guide checks 
+●​ at least 18–20 practicals with AI Add-on Cards included 
+●​ prompts are simple and safe 
+●​ clear mapping from LMS modules to class/lab usage 
+●​ evidence capture method is lightweight and realistic 
+6 
+© Tata Community Initiatives Trust, All Rights Reserved 
+ 

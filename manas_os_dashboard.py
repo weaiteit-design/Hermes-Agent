@@ -27,6 +27,15 @@ def run(cmd, timeout=20):
     except Exception as e:
         return {'ok': False, 'out': repr(e), 'code': 1}
 
+def run_args(args, timeout=20):
+    try:
+        p = subprocess.run(args, text=True, capture_output=True, timeout=timeout, cwd=str(ROOT))
+        return {'ok': p.returncode == 0, 'out': (p.stdout + p.stderr).strip(), 'code': p.returncode}
+    except subprocess.TimeoutExpired:
+        return {'ok': False, 'out': f'Timed out after {timeout}s', 'code': 124}
+    except Exception as e:
+        return {'ok': False, 'out': repr(e), 'code': 1}
+
 def parse_insights(text):
     data = {'raw': text[-5000:]}
     patterns = {
@@ -104,9 +113,10 @@ def api_chat(prompt):
     if not prompt:
         return {'reply':'Type a message first.'}
     # Safer: use the main Hermes CLI in non-interactive mode, bounded timeout.
+    # Pass argv directly instead of shell-quoting so prompts with quotes/newlines
+    # cannot break the command line or be interpreted by the shell.
     with CHAT_LOCK:
-        quoted = subprocess.list2cmdline(['hermes','chat','-q',prompt,'--source','manas-dashboard'])
-        res = run(quoted, 180)
+        res = run_args(['hermes','chat','-q',prompt,'--source','manas-dashboard'], 180)
     reply = res['out'] or '(No response)'
     low = reply.lower()
     if 'rate limit' in low or 'rate-limited' in low or 'usage limit' in low or 'out of extra usage' in low or '429' in low:
@@ -146,7 +156,9 @@ HTML = r'''<!doctype html>
 <div class="panel" style="margin-top:14px"><h2>Simple Chat + Voice Mode</h2><div class="subtle">Clean chat replacing terminal input, now with Jarvis-style browser voice input/output. Telegram remains primary for serious work.</div><div class="voicebar"><button id="voiceBtn" onclick="toggleVoice()">🎙 Voice Mode</button><button onclick="startVoiceOnce()">Speak Once</button><button onclick="stopVoice()">Stop Listening</button><button onclick="toggleAutoSpeak()" id="speakBtn">🔊 Speak Replies: On</button></div><div class="voice-status" id="voiceStatus"><span class="orb-small"></span>Voice ready. Browser may ask for microphone permission.</div><div class="chatbox"><textarea id="msg" placeholder="Ask Hermes something, or press Voice Mode and speak…"></textarea><button onclick="sendChat()">SEND</button></div><div id="reply" class="reply">ready | Hermes connected | Telegram remains primary</div></div></section>
 <aside><div class="panel"><h2>Usage</h2><div class="metrics" id="metrics"></div><div id="subs"></div></div><div class="panel" style="margin-top:14px"><h2>Tools</h2><div class="tools" id="tools">Pixel Agents assets loaded from repo</div></div></aside></div></main></div>
 <script>
-const params=new URLSearchParams(location.search); const key=params.get('key')||localStorage.getItem('manas_key')||'manas-office'; if(key) localStorage.setItem('manas_key',key);
+const params=new URLSearchParams(location.search); const key=params.get('key')||localStorage.getItem('manas_key')||''; if(key) localStorage.setItem('manas_key',key);
+function withKey(path){return key ? path+(path.includes('?')?'&':'?')+'key='+encodeURIComponent(key) : path}
+if(key){navChat.href=withKey('/chat'); navOffice.href=withKey('/office'); navUsage.href=withKey('/');}
 const route=location.pathname; document.querySelectorAll('.nav a').forEach(a=>a.classList.remove('active')); if(route.startsWith('/office')){navOffice.classList.add('active'); pageTitle.textContent='KANBAN OFFICE'} else if(route==='/'||route===''){navUsage.classList.add('active'); pageTitle.textContent='USAGE'} else {navChat.classList.add('active'); pageTitle.textContent='CHAT'}
 let voiceAutoSpeak=true, listening=false, rec=null;
 function initVoice(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){voiceStatus.textContent='Voice input unavailable in this browser. Use Chrome/Edge over HTTPS.';return null} const r=new SR(); r.lang='en-IN'; r.continuous=false; r.interimResults=false; r.onstart=()=>{listening=true; voiceBtn.classList.add('voice-on'); voiceStatus.innerHTML='<span class="orb-small"></span>Listening… speak now'}; r.onend=()=>{listening=false; voiceBtn.classList.remove('voice-on'); if(voiceStatus.textContent.includes('Listening')) voiceStatus.innerHTML='<span class="orb-small"></span>Voice ready'}; r.onerror=e=>{voiceStatus.textContent='Voice error: '+(e.error||'unknown')}; r.onresult=e=>{let text=e.results[0][0].transcript; msg.value=text; voiceStatus.textContent='Heard: '+text; sendChat()}; return r}
@@ -188,6 +200,8 @@ class Handler(http.server.BaseHTTPRequestHandler):
             except Exception:
                 self.send_response(404); self.end_headers(); return
         if path in ('/', '/chat', '/office'):
+            if not self.authed():
+                return self.ok('<main style="padding:30px;color:white;background:#061511;min-height:100vh;font-family:sans-serif"><h2>Access key required</h2><p>Open the private dashboard link from Telegram or /root/Hermes-Agent/logs/manas-dashboard-token.txt.</p></main>', 'text/html; charset=utf-8')
             return self.ok(HTML, 'text/html; charset=utf-8')
         if not self.authed(): return self.forbidden()
         if path == '/api/usage': return self.ok(json.dumps(api_usage()))

@@ -28,6 +28,7 @@ logs/
 
 # Browser auth/session data. Do not commit cookies or local sessions.
 browser-profile/
+workspace-agent-browser-profile/
 browser-downloads/
 browser-screenshots/
 
