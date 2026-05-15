@@ -36,6 +36,9 @@ bin/
 vendor/
 node_modules/
 
+# External repos are cloned here for inspection/work but should remain separate Git repos.
+external-repos/
+
 # Generated document/image previews
 marathi_pdf_preview/
 marathi_pdf_preview2/
