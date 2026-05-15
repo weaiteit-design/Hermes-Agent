@@ -54,15 +54,12 @@ def parse_insights(text):
 
 def api_usage():
     insights = run('hermes insights --days 30', 45)['out']
-    claude = run('claude auth status --text 2>/dev/null || true', 15)['out']
-    status = 'Connected' if 'Claude Max account' in claude or 'Logged in' in claude or 'login method' in claude.lower() else 'Unknown / not connected'
-    # Redact private email/org if present.
-    claude_redacted = re.sub(r'[\w.+-]+@[\w.-]+', '[redacted-email]', claude)
+    codex = run('test -f ~/.codex/auth.json && codex --version 2>/dev/null || true', 15)['out']
+    codex_status = 'Connected' if 'codex' in codex.lower() else 'Not connected'
     return {
         'local_hermes_usage': parse_insights(insights),
         'subscriptions': [
-            {'name':'Claude Code / Claude Max', 'status':status, 'usage':'Official remaining quota is not exposed locally; Hermes can show connection status and local usage only.', 'details':claude_redacted[-500:]},
-            {'name':'OpenAI Codex / ChatGPT', 'status':'Active if this Telegram agent is responding via gpt-5.5', 'usage':'Official subscription quota must be checked in the provider UI. Hermes local token usage is shown above.'},
+            {'name':'OpenAI Codex / ChatGPT', 'status':codex_status, 'usage':'Official subscription quota must be checked in the provider UI. Hermes local token usage is shown above.', 'details':codex[-500:]},
             {'name':'Hermes local accounting', 'status':'Available', 'usage':'30-day sessions, messages, tool calls, and token counts from hermes insights.'}
         ]
     }
