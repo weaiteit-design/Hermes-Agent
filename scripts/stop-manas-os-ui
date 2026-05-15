@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+ROOT="/root/Hermes-Agent"
+LOG_DIR="$ROOT/logs"
+for f in manas-os-cloudflared.pid manas-os-dashboard.pid; do
+  if [ -f "$LOG_DIR/$f" ]; then kill "$(cat "$LOG_DIR/$f")" 2>/dev/null || true; fi
+done
+pkill -f 'cloudflared tunnel --url http://127.0.0.1:9121' 2>/dev/null || true
+pkill -f 'manas_os_dashboard.py' 2>/dev/null || true
+rm -f "$LOG_DIR/manas-os-cloudflared.pid" "$LOG_DIR/manas-os-dashboard.pid" "$LOG_DIR/manas-os-public-url.txt"
+echo "Manas OS UI stopped."

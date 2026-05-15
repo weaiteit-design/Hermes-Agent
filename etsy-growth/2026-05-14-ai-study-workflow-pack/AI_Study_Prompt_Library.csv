@@ -1,0 +1,26 @@
+Category,Prompt
+Lecture to Notes,"Turn this lecture transcript into Cornell notes with cues, summary, and 10 exam-style questions: [paste transcript]."
+Lecture to Notes,Extract the 20 percent of concepts that explain 80 percent of this topic: [topic/text].
+Lecture to Notes,"Convert these messy notes into a clean hierarchy with definitions, formulas, examples, and common mistakes: [notes]."
+Lecture to Notes,"Explain this topic at three levels: beginner, exam-ready, and expert: [topic]."
+Lecture to Notes,"Create a one-page cheat sheet from these notes, with definitions, formulas, and examples: [notes]."
+Exam Prep,"Create a 7-day revision plan for [exam/topic] with active recall, spaced repetition, and daily checkpoints."
+Exam Prep,"Quiz me Socratically on [topic]. Ask one question at a time, wait for my answer, then correct me."
+Exam Prep,Generate 25 mixed difficulty MCQs from this chapter and explain the answer key: [chapter/text].
+Exam Prep,Create a mock test from this syllabus with marks distribution and answer key: [syllabus].
+Exam Prep,Make an error log from my wrong answers and tell me the pattern I need to fix: [wrong answers].
+Assignments,"Help me break this assignment into research, outline, draft, edit, and submission tasks: [brief]."
+Assignments,Review my draft against this rubric and give specific fixes: [draft + rubric].
+Assignments,"Create a concise argument map for this essay topic with claims, evidence, counterpoints, and conclusion: [topic]."
+Assignments,Turn this assignment brief into a checklist I can follow without missing requirements: [brief].
+Assignments,Suggest credible source angles and search queries for this assignment: [topic].
+Productivity,Build a realistic weekly study schedule around these fixed commitments: [commitments].
+Productivity,"Convert my backlog into a priority list using urgency, marks impact, and effort: [tasks]."
+Productivity,"Create a distraction-resistant 45-minute study sprint for [topic] with warmup, deep work, recall, and recap."
+Productivity,"Help me plan today around my energy level, deadline pressure, and top 3 outcomes: [context]."
+Productivity,Create a spaced repetition plan for these topics over the next 14 days: [topics].
+Career and Projects,Turn this vague project idea into a 1-week MVP plan with deliverables and learning goals: [idea].
+Career and Projects,Help me explain this project on LinkedIn in a humble student-builder voice: [project].
+Career and Projects,"Create 10 portfolio project ideas combining [subject] and AI tools, ranked by feasibility."
+Career and Projects,Turn my learning from this project into 5 resume bullets and 3 LinkedIn post angles: [project].
+Career and Projects,Create a beginner-friendly roadmap to learn [skill] using free resources and weekly projects.

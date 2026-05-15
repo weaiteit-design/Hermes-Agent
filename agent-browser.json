@@ -1,0 +1,7 @@
+{
+  "profile": "/root/Hermes-Agent/browser-profile",
+  "downloadPath": "/root/Hermes-Agent/browser-downloads",
+  "screenshotDir": "/root/Hermes-Agent/browser-screenshots",
+  "args": "--no-sandbox,--disable-dev-shm-usage",
+  "defaultTimeout": 30000
+}

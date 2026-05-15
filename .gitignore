@@ -1,6 +1,10 @@
 # Environment and secrets
 .env
 *.env.*
+*.key
+*.pem
+*.token
+secrets/
 
 # OS files
 .DS_Store
@@ -12,3 +16,33 @@ data/
 # Editor files
 .vscode/
 .idea/
+
+# Python/cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Logs/runtime
+logs/
+*.log
+
+# Browser auth/session data. Do not commit cookies or local sessions.
+browser-profile/
+browser-downloads/
+browser-screenshots/
+
+# Local binaries/dependencies/vendor caches
+bin/
+vendor/
+node_modules/
+
+# Generated document/image previews
+marathi_pdf_preview/
+marathi_pdf_preview2/
+marathi_pdf_preview3/
+pdf_pages_preview/
+
+# Large/source documents kept local unless explicitly needed
+*.pdf
+*.xlsx
+*.xls

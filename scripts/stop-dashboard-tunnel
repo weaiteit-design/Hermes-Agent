@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+ROOT="/root/Hermes-Agent"
+LOG_DIR="$ROOT/logs"
+if [ -f "$LOG_DIR/cloudflared-dashboard.pid" ]; then kill "$(cat "$LOG_DIR/cloudflared-dashboard.pid")" 2>/dev/null || true; fi
+if [ -f "$LOG_DIR/hermes-dashboard.pid" ]; then kill "$(cat "$LOG_DIR/hermes-dashboard.pid")" 2>/dev/null || true; fi
+pkill -f 'cloudflared tunnel --url http://127.0.0.1:9119' 2>/dev/null || true
+pkill -f 'hermes dashboard --host .* --port 9119' 2>/dev/null || true
+rm -f "$LOG_DIR/cloudflared-dashboard.pid" "$LOG_DIR/hermes-dashboard.pid" "$LOG_DIR/dashboard-public-url.txt"
+echo "Dashboard tunnel stopped."

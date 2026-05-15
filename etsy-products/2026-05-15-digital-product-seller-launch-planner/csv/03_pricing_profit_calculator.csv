@@ -1,0 +1,9 @@
+Item,Value,Notes
+Product price USD,7.99,Edit this number for pricing tests
+Marketplace/listing fees %,10,Estimate only; replace with your actual platform costs
+Payment/transaction fees %,6,Estimate only
+Fixed fees USD,0.50,Estimate only
+Net revenue formula,=B2-(B2*(B3+B4)/100)-B5,Use in spreadsheet software
+Time to create hours,4,Initial build time
+Desired hourly value USD,25,Internal planning only
+Break-even units formula,=(B7*B8)/B6,How many sales to cover time value
