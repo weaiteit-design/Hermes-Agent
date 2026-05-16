@@ -96,15 +96,16 @@ Prior products remain available from May 14 and May 15, including AI Study Workf
 ### 6. Daily X app ideas report
 **What it is:** Scheduled daily research agent that searches X for fresh app idea signals using focused one-keyword-at-a-time queries.
 
-**Current status:** Updated after the Mac CDP work: this job should now use authenticated browser/CDP access to X.com, not the X API or `xurl`. The cron job `df970df22133` has been updated to load only the `daily-x-app-ideas-research` skill, remove `xurl`, and run with browser/terminal/file/skills toolsets from `/root/Hermes-Agent`.
+**Current status:** Updated after the CDP repair: this job now uses browser/CDP access to X.com, not the X API or `xurl`. The cron job `df970df22133` loads only the `daily-x-app-ideas-research` skill and runs with browser/terminal/file/skills toolsets from `/root/Hermes-Agent`. The actual live endpoint in the Workspace-agent namespace is `http://127.0.0.1:9222`, and `/opt/data/config.yaml` in the agent container is set to that endpoint.
 
 **Risks/blockers:**
-- The Mac Chrome reverse tunnel must be running for `http://127.0.0.1:9223/json/version` to show a `Macintosh` user agent.
-- If X shows logged-out/login-wall state in the Chrome-Hermes profile, the job must report the browser/CDP blocker instead of falling back to the API.
+- `9222` is currently a Linux Chrome inside the agent container, not Mac Chrome, but it is a valid CDP browser endpoint for the job.
+- Smoke test showed X redirects `9222` to login: `https://x.com/i/flow/login?...`, with visible text such as `Sign in to X`, `Create account`, and `Happening now`.
+- If X shows logged-out/login-wall state, the job must report the browser/login blocker instead of falling back to the API.
 - Without fresh visible X sources, the report cannot meet its quality bar.
 
 **Opportunities:**
-- Use the logged-in Mac Chrome CDP session for focused X searches.
+- Log into X in the active `9222` browser profile, or restore the Mac Chrome tunnel at `9223` if a logged-in Mac profile is required.
 - Keep one-keyword-at-a-time searches and avoid broad OR queries.
 - Do not depend on X API credits for this report anymore.
 
