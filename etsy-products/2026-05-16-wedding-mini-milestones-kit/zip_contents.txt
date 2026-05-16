@@ -1,0 +1,10 @@
+README.md
+ai-planning-prompts.md
+mini-event-budget.csv
+mini-milestones-checklist.csv
+notion-copy-instructions.md
+timeline-template.csv
+vendor-contact-tracker.csv
+wedding-mini-milestones-workbook.html
+wedding-mini-milestones-workbook.pdf
+ZIP integrity: OK
