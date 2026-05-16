@@ -32,6 +32,10 @@ workspace-agent-browser-profile/
 browser-downloads/
 browser-screenshots/
 
+# Local tunnel/autostart files may contain server/user/SSH details.
+scripts/*cdp*.sh
+scripts/*cdp*.plist
+
 # Local binaries/dependencies/vendor caches
 bin/
 vendor/

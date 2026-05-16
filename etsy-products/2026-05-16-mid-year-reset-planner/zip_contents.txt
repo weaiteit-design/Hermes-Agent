@@ -1,0 +1,12 @@
+customer_files/Mid_Year_Reset_Planner_Printable.html
+customer_files/Mid_Year_Reset_Planner_Printable.pdf
+customer_files/Mid_Year_Reset_Planner_Workbook.md
+customer_files/Notion_Copy_Instructions.md
+customer_files/README.md
+customer_files/Reflection_Prompt_Pack.md
+customer_files/cover_mockup.png
+customer_files/cover_mockup.svg
+customer_files/csv/90_day_goal_sprint.csv
+customer_files/csv/budget_reset.csv
+customer_files/csv/habit_tracker_13_weeks.csv
+customer_files/csv/life_audit_scorecard.csv
