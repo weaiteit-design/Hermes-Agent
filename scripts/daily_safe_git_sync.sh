@@ -17,6 +17,7 @@ fi
 
 # Durable, safe folders only. Do not use git add . in this operator workspace.
 ALLOWLIST=(
+  .gitignore
   reports
   project-intelligence
   social-content
