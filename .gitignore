@@ -68,6 +68,9 @@ workspace/**/video_slides_mr/
 workspace/**/*contact_sheet*.jpg
 workspace/**/qa_*.jpg
 workspace/unzipped_*/
+workspace/Tata_Strive_Rebuild_One_By_One/
+workspace/Tata_Strive_B2T1_Final_EN_MR/
+workspace/*.py
 workspace/**/*.pptx
 workspace/**/*.docx
 workspace/**/*.jpg
