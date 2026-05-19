@@ -1,0 +1,33 @@
+{
+  "date": "2026-05-19",
+  "asset_type": "shop trust and launch kit",
+  "banner_png_dimensions": [
+    3360,
+    840
+  ],
+  "icon_png_dimensions": [
+    500,
+    500
+  ],
+  "openai_concept_copied": true,
+  "files_checked": [
+    "heirloomplanners-shop-banner-3360x840.svg",
+    "ready_listing_upload_queue.csv",
+    "marketing_launch_copy.md",
+    "shop_about_announcement_faq.md",
+    "heirloomplanners-shop-banner-3360x840.png",
+    "heirloomplanners-shop-icon-500x500.png",
+    "openai-banner-concept-1536x1024.png",
+    "shop_sections_and_seo_architecture.md",
+    "manual_upload_sop.md",
+    "heirloomplanners-shop-icon-500x500.svg"
+  ],
+  "policy_checks": [
+    "digital-download language included",
+    "no income guarantees",
+    "no copyrighted/trademarked visual assets",
+    "no review manipulation",
+    "no Etsy affiliation claims"
+  ],
+  "publishing_status": "assets created locally; Etsy dashboard/browser automation timed out, so no draft/live changes claimed"
+}

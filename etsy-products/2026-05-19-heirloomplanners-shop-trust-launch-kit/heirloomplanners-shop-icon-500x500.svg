@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500" role="img" aria-label="HeirloomPlanners shop icon">
+  <rect width="500" height="500" rx="92" fill="#F7F1E6"/>
+  <rect x="74" y="72" width="352" height="356" rx="42" fill="#FFF9EF" stroke="#C9A85D" stroke-width="10"/>
+  <rect x="116" y="118" width="268" height="70" rx="18" fill="#8FA58B"/>
+  <text x="250" y="276" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="126" fill="#2E332D">HP</text>
+  <path d="M146 332h208M146 374h160" stroke="#8FA58B" stroke-width="18" stroke-linecap="round" opacity=".75"/>
+</svg>

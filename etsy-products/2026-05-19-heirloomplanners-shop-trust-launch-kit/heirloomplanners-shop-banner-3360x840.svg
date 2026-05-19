@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3360" height="840" viewBox="0 0 3360 840" role="img" aria-label="HeirloomPlanners Etsy shop banner">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF9EF"/><stop offset="1" stop-color="#F7F1E6"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#77694D" flood-opacity=".18"/></filter>
+    <pattern id="dots" width="48" height="48" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="2" fill="#D9CBAE" opacity=".28"/></pattern>
+  </defs>
+  <rect width="3360" height="840" fill="url(#bg)"/>
+  <rect width="3360" height="840" fill="url(#dots)"/>
+  <rect x="170" y="118" width="3020" height="604" rx="46" fill="#FFFDF7" opacity=".82" filter="url(#shadow)"/>
+  <rect x="220" y="168" width="470" height="504" rx="34" fill="#8FA58B" opacity=".92"/>
+  <path d="M305 270h300M305 342h240M305 414h300M305 486h210M305 558h265" stroke="#FFF9EF" stroke-width="26" stroke-linecap="round" opacity=".9"/>
+  <circle cx="575" cy="248" r="52" fill="#C9A85D" opacity=".88"/>
+  <rect x="2730" y="178" width="340" height="420" rx="28" fill="#F7F1E6" stroke="#C9A85D" stroke-width="8"/>
+  <path d="M2790 280h220M2790 350h150M2790 420h220M2790 490h180" stroke="#8FA58B" stroke-width="18" stroke-linecap="round" opacity=".7"/>
+  <text x="1680" y="342" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="150" fill="#2E332D" letter-spacing="2">HeirloomPlanners</text>
+  <line x1="1055" y1="400" x2="2305" y2="400" stroke="#C9A85D" stroke-width="6" opacity=".9"/>
+  <text x="1680" y="492" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="62" fill="#465747" letter-spacing="3">DIGITAL PLANNERS • TRACKERS • SMALL BUSINESS SYSTEMS</text>
+  <text x="1680" y="590" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="42" fill="#6D6A5F">Printable PDFs, spreadsheet-ready CSVs, copy/paste workspaces, and clear instructions</text>
+</svg>

@@ -1,0 +1,2 @@
+Product,Listing Price,Discount %,Platform/Payment Fee Estimate,Ad Spend Per Sale,Production Cost,Tax Reserve,Estimated Net Profit,Notes
+Example Digital Planner,14.99,0,1.50,0.00,0.00,0.00,=B2-(B2*C2/100)-D2-E2-F2-G2,Replace example values with your own

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3360" height="840" viewBox="0 0 3360 840">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fffdf7"/>
+      <stop offset="1" stop-color="#efe5d2"/>
+    </linearGradient>
+  </defs>
+  <rect width="3360" height="840" fill="url(#bg)"/>
+  <rect x="130" y="110" width="3100" height="620" rx="44" fill="#fbf6ea" stroke="#c7a85b" stroke-width="8"/>
+  <circle cx="380" cy="420" r="150" fill="#dfe8dc" opacity="0.85"/>
+  <rect x="2540" y="205" width="390" height="430" rx="30" fill="#dfe8dc" opacity="0.9"/>
+  <rect x="2600" y="275" width="270" height="34" fill="#fffdf7" opacity="0.95"/>
+  <rect x="2600" y="345" width="270" height="34" fill="#fffdf7" opacity="0.95"/>
+  <rect x="2600" y="415" width="270" height="34" fill="#fffdf7" opacity="0.95"/>
+  <rect x="2600" y="485" width="180" height="34" fill="#fffdf7" opacity="0.95"/>
+  <text x="1680" y="350" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="116" fill="#3e5142">HeirloomPlanners</text>
+  <text x="1680" y="450" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="48" fill="#6d6a61">Practical digital planners, trackers &amp; small business systems</text>
+  <text x="1680" y="535" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="34" fill="#7f927f">Printable PDFs • Spreadsheets • Notion-copy workspaces • Calm organization tools</text>
+  <line x1="980" y1="595" x2="2380" y2="595" stroke="#c7a85b" stroke-width="5" stroke-linecap="round" opacity="0.75"/>
+</svg>

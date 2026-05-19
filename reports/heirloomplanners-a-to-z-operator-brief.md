@@ -52,8 +52,9 @@ Each daily run should report:
 6. Next best move for tomorrow.
 
 ## Near-term priorities
-1. Complete shop trust assets: banner, shop story, seller/brand image.
-2. Increase listing count with focused bundles priced around $9.99–$19.99.
-3. Build enough niche depth for Etsy SEO, starting with wedding/event systems while testing broader digital-product categories.
-4. Improve automatic Etsy draft creation/upload verification.
-5. Start tracking daily listing count, views, visits, favorites, orders, conversion, and revenue when visible.
+1. Complete shop trust assets using the 2026-05-19 trust kit: banner PNG, icon/seller photo, shop announcement, about/story, FAQ.
+2. Publish or save verified drafts for existing ready packages before creating much more inventory: seller command center first, then wedding/event, then student/ADHD.
+3. After at least 3 listings are live, track daily listing count, views, visits, favorites, orders, conversion, and revenue to identify winning niches.
+4. Increase listing count with focused bundles priced around $9.99–$19.99 once the trust/publishing bottleneck is cleared.
+5. Build enough niche depth for Etsy SEO around niches that show early traffic/favorites/orders.
+6. Improve automatic Etsy draft creation/upload verification.
