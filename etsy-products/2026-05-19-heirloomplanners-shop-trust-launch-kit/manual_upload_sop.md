@@ -4,7 +4,7 @@
 1. Upload `heirloomplanners-shop-banner-3360x840.png` as the shop banner.
 2. Upload `heirloomplanners-shop-icon-500x500.png` as the shop icon if a seller photo/brand icon is acceptable; otherwise use a real seller/brand photo.
 3. Paste the shop announcement and about/story from `shop_about_announcement_faq.md`.
-4. Create/upload the first product draft: Etsy Seller Profit & Listing Command Center.
+4. Create/upload the first product draft: Online Seller Profit & Listing Command Center.
 
 ## Product upload order
 Use `ready_listing_upload_queue.csv`.

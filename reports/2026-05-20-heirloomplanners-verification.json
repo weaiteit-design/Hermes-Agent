@@ -1,0 +1,82 @@
+{
+  "zips": {
+    "trust_zip": {
+      "path": "/root/Hermes-Agent/etsy-products/2026-05-19-heirloomplanners-shop-trust-launch-kit/heirloomplanners-shop-trust-launch-kit.zip",
+      "ok": true,
+      "bad": null,
+      "file_count": 11,
+      "size_bytes": 2396807
+    },
+    "seller_zip": {
+      "path": "/root/Hermes-Agent/etsy-products/2026-05-18-etsy-seller-profit-listing-command-center/etsy-seller-command-center-customer-files.zip",
+      "ok": true,
+      "bad": null,
+      "file_count": 12,
+      "size_bytes": 10914
+    },
+    "wedding_zip": {
+      "path": "/root/Hermes-Agent/etsy-products/2026-05-16-wedding-mini-milestones-kit/wedding-mini-milestones-kit-customer-files.zip",
+      "ok": true,
+      "bad": null,
+      "file_count": 9,
+      "size_bytes": 11781
+    },
+    "student_zip": {
+      "path": "/root/Hermes-Agent/etsy-products/2026-05-17-adhd-student-deadline-rescue-kit/adhd-student-deadline-rescue-kit-customer-files.zip",
+      "ok": true,
+      "bad": null,
+      "file_count": 16,
+      "size_bytes": 6699800
+    }
+  },
+  "images": {
+    "banner": {
+      "path": "/root/Hermes-Agent/etsy-products/2026-05-19-heirloomplanners-shop-trust-launch-kit/heirloomplanners-shop-banner-3360x840.png",
+      "size": [
+        3360,
+        840
+      ],
+      "mode": "RGB",
+      "bytes": 65283
+    },
+    "icon": {
+      "path": "/root/Hermes-Agent/etsy-products/2026-05-19-heirloomplanners-shop-trust-launch-kit/heirloomplanners-shop-icon-500x500.png",
+      "size": [
+        500,
+        500
+      ],
+      "mode": "RGB",
+      "bytes": 4243
+    },
+    "seller_img_1": {
+      "path": "/root/Hermes-Agent/etsy-products/2026-05-18-etsy-seller-profit-listing-command-center/listing_images/01-listing-image.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "bytes": 2188296
+    },
+    "seller_img_2": {
+      "path": "/root/Hermes-Agent/etsy-products/2026-05-18-etsy-seller-profit-listing-command-center/listing_images/02-listing-image.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "bytes": 2825433
+    },
+    "seller_img_3": {
+      "path": "/root/Hermes-Agent/etsy-products/2026-05-18-etsy-seller-profit-listing-command-center/listing_images/03-listing-image.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "bytes": 2367395
+    }
+  },
+  "notes": [
+    "Trust kit ZIP rebuilt after updating upload queue/SOP."
+  ]
+}

@@ -1,7 +1,7 @@
-# Etsy Listing Copy — Etsy Seller Profit & Listing Command Center
+# Etsy Listing Copy — Online Seller Profit & Listing Command Center
 
-## SEO title (135/140 chars)
-Etsy Seller Profit Tracker & Listing Planner, Small Business Spreadsheet, Digital Product Shop Command Center, Printable Bundle
+## SEO title (129/140 chars)
+Online Seller Profit Tracker & Listing Planner, Small Business Spreadsheet, Digital Product Shop Command Center, Printable Bundle
 
 ## Suggested category
 Paper & Party Supplies > Paper > Planners & Calendars OR Templates > Spreadsheets. Use the closest Etsy category available during listing.
@@ -13,7 +13,7 @@ USD $14.99 launch price. Test $17.99 after first traction. INR equivalent: about
 1. seller planner
 2. profit tracker
 3. listing planner
-4. etsy spreadsheet
+4. shop spreadsheet
 5. shop planner
 6. product tracker
 7. seo tracker

@@ -85,11 +85,24 @@ Date: 2026-05-16
 - Draft/listing status: no Etsy draft/live changes claimed; Etsy browser automation timed out, so upload verification was unsafe.
 - Next action: manually upload the banner/icon/story assets, then publish or draft the 2026-05-18 seller command center first, followed by wedding and ADHD/student packages.
 
+### 2026-05-20
+
+#### Asset improved: Publishing control sheet + policy-safe first upload packet
+- Type: backlog publishing/trust bottleneck work, not a new product. This matches the current priority: shipping and measurement over making endless unpublished SKUs.
+- Shop metric snapshot: Etsy browser/CDP was unavailable. `127.0.0.1:9223` refused connection, so current live listing count, sales/orders/reviews/messages, dashboard prompts, and draft state could not be verified. Prior known snapshot remains 1 active listing, 0 sales/reviews, trust setup 2/5 complete unless Manas changed this manually.
+- Files created: `/root/Hermes-Agent/reports/2026-05-20-heirloomplanners-publishing-control-sheet.md` and `/root/Hermes-Agent/reports/2026-05-20-heirloomplanners-verification.json`.
+- Existing backlog re-verified: trust kit ZIP, seller command center ZIP, wedding kit ZIP, and ADHD/student ZIP all passed `zipfile.testzip()`.
+- Dimensions re-verified: banner PNG 3360x840, icon PNG 500x500, first seller/listing images 1536x1024 each.
+- Policy/safety cleanup: first backlog product buyer-facing title/tags were changed from platform-specific wording to safer descriptive wording: `Online Seller Profit Tracker & Listing Planner...`; the tag `etsy spreadsheet` was changed to `shop spreadsheet` to reduce unnecessary trademark/platform-affiliation risk.
+- Upload queue corrected: ADHD/student listing-image path now points to the actual `images/` folder.
+- Draft/listing status: no Etsy draft/live changes claimed; browser automation was unavailable, so upload verification was unsafe.
+- Next action: Manas should use the 2026-05-20 publishing control sheet to upload the trust assets and first product in under 30 minutes.
+
 ## Next highest-leverage actions
 
 1. Complete shop trust assets today: upload /root/Hermes-Agent/etsy-products/2026-05-19-heirloomplanners-shop-trust-launch-kit/heirloomplanners-shop-banner-3360x840.png, icon or seller photo, and shop announcement/about copy.
-2. Manually upload ready packages as Etsy drafts/live listings, starting with the 2026-05-18 seller command center, then 2026-05-16 wedding kit and 2026-05-17 ADHD student kit.
+2. Manually upload ready packages as Etsy drafts/live listings, starting with the 2026-05-18 Online Seller Profit & Listing Command Center, then 2026-05-16 wedding kit and 2026-05-17 ADHD student kit.
 3. After at least 3 listings are live, track views/favorites/orders to decide which niche to double down on.
-4. Improve Etsy draft automation/upload verification so future cron runs can safely create drafts.
+4. Restore Chrome/CDP Etsy Shop Manager access so future cron runs can safely inspect metrics and create verified drafts.
 5. Increase catalog depth with niche-specific $9.99-$19.99 bundles only after live listing/trust bottleneck improves.
 6. Build traffic loops from Pinterest/YouTube Shorts/Instagram/X content around each product theme.
