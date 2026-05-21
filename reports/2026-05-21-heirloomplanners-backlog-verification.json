@@ -1,0 +1,328 @@
+{
+  "date": "2026-05-21",
+  "cdp": {
+    "9223": {
+      "ok": false,
+      "error": "URLError: <urlopen error [Errno 111] Connection refused>"
+    },
+    "9222": {
+      "ok": false,
+      "error": "URLError: <urlopen error [Errno 111] Connection refused>"
+    }
+  },
+  "trust": {
+    "zip": {
+      "path": "/root/Hermes-Agent/etsy-products/2026-05-19-heirloomplanners-shop-trust-launch-kit/heirloomplanners-shop-trust-launch-kit.zip",
+      "ok": true,
+      "bad": null,
+      "file_count": 11,
+      "size_bytes": 2396807
+    },
+    "banner": {
+      "path": "/root/Hermes-Agent/etsy-products/2026-05-19-heirloomplanners-shop-trust-launch-kit/heirloomplanners-shop-banner-3360x840.png",
+      "size": [
+        3360,
+        840
+      ],
+      "mode": "RGB",
+      "bytes": 65283
+    },
+    "icon": {
+      "path": "/root/Hermes-Agent/etsy-products/2026-05-19-heirloomplanners-shop-trust-launch-kit/heirloomplanners-shop-icon-500x500.png",
+      "size": [
+        500,
+        500
+      ],
+      "mode": "RGB",
+      "bytes": 4243
+    }
+  },
+  "products": {
+    "seller": {
+      "name": "Online Seller Profit & Listing Command Center",
+      "price": "$14.99",
+      "listing": "/root/Hermes-Agent/etsy-products/2026-05-18-etsy-seller-profit-listing-command-center/listing.md",
+      "title": "Online Seller Profit Tracker & Listing Planner, Small Business Spreadsheet, Digital Product Shop Command Center, Printable Bundle",
+      "title_chars": 129,
+      "title_ok": true,
+      "tags": [
+        "seller planner",
+        "profit tracker",
+        "listing planner",
+        "shop spreadsheet",
+        "shop planner",
+        "product tracker",
+        "seo tracker",
+        "business planner",
+        "digital download",
+        "pricing tracker",
+        "launch planner",
+        "small biz tools",
+        "notion template"
+      ],
+      "tag_count": 13,
+      "tags_ok": true,
+      "tag_lengths": {
+        "seller planner": 14,
+        "profit tracker": 14,
+        "listing planner": 15,
+        "shop spreadsheet": 16,
+        "shop planner": 12,
+        "product tracker": 15,
+        "seo tracker": 11,
+        "business planner": 16,
+        "digital download": 16,
+        "pricing tracker": 15,
+        "launch planner": 14,
+        "small biz tools": 15,
+        "notion template": 15
+      },
+      "zip": {
+        "path": "/root/Hermes-Agent/etsy-products/2026-05-18-etsy-seller-profit-listing-command-center/etsy-seller-command-center-customer-files.zip",
+        "ok": true,
+        "bad": null,
+        "file_count": 12,
+        "size_bytes": 10914,
+        "contents": [
+          "README.md",
+          "csv/01_profit_calculator.csv",
+          "csv/02_listing_seo_tracker.csv",
+          "csv/03_product_launch_pipeline.csv",
+          "csv/04_30_day_content_calendar.csv",
+          "csv/05_customer_message_templates.csv",
+          "csv/06_review_safe_improvement_log.csv",
+          "csv/07_tax_prep_expense_log.csv",
+          "etsy_seller_command_center.html",
+          "etsy_seller_command_center.pdf",
+          "notion_copy_workspace.md",
+          "prompt_pack.md"
+        ]
+      },
+      "images": [
+        {
+          "path": "/root/Hermes-Agent/etsy-products/2026-05-18-etsy-seller-profit-listing-command-center/listing_images/01-listing-image.png",
+          "size": [
+            1536,
+            1024
+          ],
+          "mode": "RGB",
+          "bytes": 2188296,
+          "ok": true
+        },
+        {
+          "path": "/root/Hermes-Agent/etsy-products/2026-05-18-etsy-seller-profit-listing-command-center/listing_images/02-listing-image.png",
+          "size": [
+            1536,
+            1024
+          ],
+          "mode": "RGB",
+          "bytes": 2825433,
+          "ok": true
+        },
+        {
+          "path": "/root/Hermes-Agent/etsy-products/2026-05-18-etsy-seller-profit-listing-command-center/listing_images/03-listing-image.png",
+          "size": [
+            1536,
+            1024
+          ],
+          "mode": "RGB",
+          "bytes": 2367395,
+          "ok": true
+        }
+      ]
+    },
+    "wedding": {
+      "name": "Wedding Mini-Milestones Planner Kit",
+      "price": "$14.99",
+      "listing": "/root/Hermes-Agent/etsy-products/2026-05-16-wedding-mini-milestones-kit/listing.md",
+      "title": "Wedding Mini Milestones Planner Kit, Rehearsal Dinner Bridal Shower Bach Weekend Budget Timeline, Printable + Spreadsheets",
+      "title_chars": 122,
+      "title_ok": true,
+      "tags": [
+        "wedding planner",
+        "wedding checklist",
+        "bridal shower plan",
+        "rehearsal dinner",
+        "bach weekend plan",
+        "wedding budget",
+        "guest list tracker",
+        "event timeline",
+        "printable planner",
+        "spreadsheet bundle",
+        "digital download",
+        "wedding organizer",
+        "bride planner"
+      ],
+      "tag_count": 13,
+      "tags_ok": true,
+      "tag_lengths": {
+        "wedding planner": 15,
+        "wedding checklist": 17,
+        "bridal shower plan": 18,
+        "rehearsal dinner": 16,
+        "bach weekend plan": 17,
+        "wedding budget": 14,
+        "guest list tracker": 18,
+        "event timeline": 14,
+        "printable planner": 17,
+        "spreadsheet bundle": 18,
+        "digital download": 16,
+        "wedding organizer": 17,
+        "bride planner": 13
+      },
+      "zip": {
+        "path": "/root/Hermes-Agent/etsy-products/2026-05-16-wedding-mini-milestones-kit/wedding-mini-milestones-kit-customer-files.zip",
+        "ok": true,
+        "bad": null,
+        "file_count": 9,
+        "size_bytes": 11781,
+        "contents": [
+          "README.md",
+          "ai-planning-prompts.md",
+          "mini-event-budget.csv",
+          "mini-milestones-checklist.csv",
+          "notion-copy-instructions.md",
+          "timeline-template.csv",
+          "vendor-contact-tracker.csv",
+          "wedding-mini-milestones-workbook.html",
+          "wedding-mini-milestones-workbook.pdf"
+        ]
+      },
+      "images": [
+        {
+          "path": "/root/Hermes-Agent/etsy-products/2026-05-16-wedding-mini-milestones-kit/listing_images/01-cover-upload.jpg",
+          "size": [
+            1200,
+            800
+          ],
+          "mode": "RGB",
+          "bytes": 89265,
+          "ok": false
+        },
+        {
+          "path": "/root/Hermes-Agent/etsy-products/2026-05-16-wedding-mini-milestones-kit/listing_images/02-bundle-overview-upload.jpg",
+          "size": [
+            1200,
+            800
+          ],
+          "mode": "RGB",
+          "bytes": 91356,
+          "ok": false
+        },
+        {
+          "path": "/root/Hermes-Agent/etsy-products/2026-05-16-wedding-mini-milestones-kit/listing_images/03-how-it-works-upload.jpg",
+          "size": [
+            1200,
+            800
+          ],
+          "mode": "RGB",
+          "bytes": 85437,
+          "ok": false
+        }
+      ]
+    },
+    "student": {
+      "name": "ADHD Student Deadline Rescue Kit",
+      "price": "$12.99",
+      "listing": "/root/Hermes-Agent/etsy-products/2026-05-17-adhd-student-deadline-rescue-kit/listing.md",
+      "title": "ADHD Student Planner Bundle, Deadline Tracker, Assignment Tracker, Study Planner, Syllabus Organizer, Printable + Notion + Sheets",
+      "title_chars": 129,
+      "title_ok": true,
+      "tags": [
+        "adhd student planner",
+        "deadline tracker",
+        "assignment tracker",
+        "study planner",
+        "syllabus organizer",
+        "student printable",
+        "college planner",
+        "notion student",
+        "google sheets",
+        "exam planner",
+        "homework tracker",
+        "digital planner",
+        "school template"
+      ],
+      "tag_count": 13,
+      "tags_ok": true,
+      "tag_lengths": {
+        "adhd student planner": 20,
+        "deadline tracker": 16,
+        "assignment tracker": 18,
+        "study planner": 13,
+        "syllabus organizer": 18,
+        "student printable": 17,
+        "college planner": 15,
+        "notion student": 14,
+        "google sheets": 13,
+        "exam planner": 12,
+        "homework tracker": 16,
+        "digital planner": 15,
+        "school template": 15
+      },
+      "zip": {
+        "path": "/root/Hermes-Agent/etsy-products/2026-05-17-adhd-student-deadline-rescue-kit/adhd-student-deadline-rescue-kit-customer-files.zip",
+        "ok": true,
+        "bad": null,
+        "file_count": 16,
+        "size_bytes": 6699800,
+        "contents": [
+          "README.md",
+          "adhd-student-deadline-rescue-workbook.pdf",
+          "adhd-student-deadline-rescue-workbook.html",
+          "notion-copy-template.md",
+          "student-email-templates.md",
+          "prompt-pack.md",
+          "csv/01_syllabus_capture.csv",
+          "csv/02_master_deadline_tracker.csv",
+          "csv/03_weekly_rescue_plan.csv",
+          "csv/04_exam_countdown.csv",
+          "csv/05_reading_lab_tracker.csv",
+          "csv/06_professor_message_log.csv",
+          "images/01-cover-openai.png",
+          "images/02-bundle-overview-openai.png",
+          "images/03-how-it-works-openai.png",
+          "images/listing-image-fallback-cover.svg"
+        ]
+      },
+      "images": [
+        {
+          "path": "/root/Hermes-Agent/etsy-products/2026-05-17-adhd-student-deadline-rescue-kit/images/01-cover-openai.png",
+          "size": [
+            1536,
+            1024
+          ],
+          "mode": "RGB",
+          "bytes": 2614682,
+          "ok": true
+        },
+        {
+          "path": "/root/Hermes-Agent/etsy-products/2026-05-17-adhd-student-deadline-rescue-kit/images/02-bundle-overview-openai.png",
+          "size": [
+            1536,
+            1024
+          ],
+          "mode": "RGB",
+          "bytes": 2126271,
+          "ok": true
+        },
+        {
+          "path": "/root/Hermes-Agent/etsy-products/2026-05-17-adhd-student-deadline-rescue-kit/images/03-how-it-works-openai.png",
+          "size": [
+            1536,
+            1024
+          ],
+          "mode": "RGB",
+          "bytes": 2223152,
+          "ok": true
+        }
+      ]
+    }
+  },
+  "upload_order": [
+    "trust assets",
+    "seller",
+    "wedding",
+    "student"
+  ]
+}

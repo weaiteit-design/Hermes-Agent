@@ -98,6 +98,18 @@ Date: 2026-05-16
 - Draft/listing status: no Etsy draft/live changes claimed; browser automation was unavailable, so upload verification was unsafe.
 - Next action: Manas should use the 2026-05-20 publishing control sheet to upload the trust assets and first product in under 30 minutes.
 
+### 2026-05-21
+
+#### Asset verified: backlog shipping status + manual upload packet check
+- Type: shipping/measurement bottleneck work, not a new product. The priority remains getting verified assets into Etsy drafts/live listings before adding more SKUs.
+- Shop metric snapshot: Etsy browser/CDP was unavailable again. Both `127.0.0.1:9223` and `127.0.0.1:9222` refused connection, so current live listing count, sales/orders/reviews/messages, dashboard prompts, and draft state could not be verified.
+- Files created: `/root/Hermes-Agent/reports/2026-05-21-heirloomplanners-shipping-status.md` and `/root/Hermes-Agent/reports/2026-05-21-heirloomplanners-backlog-verification.json`.
+- Existing backlog re-verified: trust kit ZIP, seller command center ZIP, wedding kit ZIP, and ADHD/student ZIP all passed `zipfile.testzip()`.
+- Dimensions re-verified: banner PNG 3360x840, icon PNG 500x500, seller images 1536x1024, wedding upload JPGs 1200x800, ADHD/student images 1536x1024.
+- Listing QA re-verified: first three backlog products each have titles under 140 characters and exactly 13 tags, with every tag within Etsy's 20-character tag limit.
+- Draft/listing status: no Etsy draft/live changes claimed; browser automation was unavailable, so upload verification was unsafe.
+- Next action: Manas should upload trust assets and the first Online Seller Profit & Listing Command Center listing using the 2026-05-20 control sheet; today's report confirms the broader backlog is still upload-ready.
+
 ## Next highest-leverage actions
 
 1. Complete shop trust assets today: upload /root/Hermes-Agent/etsy-products/2026-05-19-heirloomplanners-shop-trust-launch-kit/heirloomplanners-shop-banner-3360x840.png, icon or seller photo, and shop announcement/about copy.
