@@ -110,11 +110,23 @@ Date: 2026-05-16
 - Draft/listing status: no Etsy draft/live changes claimed; browser automation was unavailable, so upload verification was unsafe.
 - Next action: Manas should upload trust assets and the first Online Seller Profit & Listing Command Center listing using the 2026-05-20 control sheet; today's report confirms the broader backlog is still upload-ready.
 
+### 2026-05-22
+
+#### Asset verified: backlog shipping status + CDP tunnel diagnosis
+- Type: shipping/measurement bottleneck work, not a new product. The priority remains getting verified assets into Etsy drafts/live listings before adding more SKUs.
+- Shop metric snapshot: Etsy Shop Manager/browser automation still could not be used safely. `127.0.0.1:9223` is listening but is an `sshd` tunnel whose CDP `/json/version`, `/json/list`, and WebSocket discovery time out; `127.0.0.1:9222` refused connection. Current live listing count, sales/orders/reviews/messages, dashboard prompts, and draft state could not be verified.
+- Files created: `/root/Hermes-Agent/reports/2026-05-22-heirloomplanners-shipping-status.md` and `/root/Hermes-Agent/reports/2026-05-22-heirloomplanners-backlog-verification.json`.
+- Existing backlog re-verified: seller command center ZIP, wedding kit ZIP, and ADHD/student ZIP all passed `zipfile.testzip()`.
+- Dimensions re-verified: banner PNG 3360x840, icon PNG 500x500, seller images 1536x1024, wedding upload JPGs 1200x800, ADHD/student images 1536x1024.
+- Listing QA re-verified: first three backlog products each have titles under 140 characters and exactly 13 tags, with every tag within Etsy's 20-character tag limit.
+- Draft/listing status: no Etsy draft/live changes claimed; browser automation timed out/hung, so upload verification was unsafe.
+- Next action: Manas should upload trust assets and the first Online Seller Profit & Listing Command Center listing using the 2026-05-20 control sheet; today's report confirms the backlog remains upload-ready and that CDP needs a tunnel/session refresh.
+
 ## Next highest-leverage actions
 
 1. Complete shop trust assets today: upload /root/Hermes-Agent/etsy-products/2026-05-19-heirloomplanners-shop-trust-launch-kit/heirloomplanners-shop-banner-3360x840.png, icon or seller photo, and shop announcement/about copy.
 2. Manually upload ready packages as Etsy drafts/live listings, starting with the 2026-05-18 Online Seller Profit & Listing Command Center, then 2026-05-16 wedding kit and 2026-05-17 ADHD student kit.
 3. After at least 3 listings are live, track views/favorites/orders to decide which niche to double down on.
-4. Restore Chrome/CDP Etsy Shop Manager access so future cron runs can safely inspect metrics and create verified drafts.
+4. Restore/refresh the Mac Chrome CDP tunnel for Etsy Shop Manager access: port 9223 is currently listening via sshd but CDP discovery hangs, while 9222 is closed.
 5. Increase catalog depth with niche-specific $9.99-$19.99 bundles only after live listing/trust bottleneck improves.
 6. Build traffic loops from Pinterest/YouTube Shorts/Instagram/X content around each product theme.

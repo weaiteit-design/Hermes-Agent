@@ -1,0 +1,169 @@
+{
+  "date": "2026-05-22",
+  "browser_access": {
+    "127.0.0.1:9223": "tcp open but CDP HTTP/WebSocket discovery timed out",
+    "127.0.0.1:9222": "connection refused"
+  },
+  "trust_assets": {
+    "trust_banner": {
+      "path": "/root/Hermes-Agent/etsy-products/2026-05-19-heirloomplanners-shop-trust-launch-kit/heirloomplanners-shop-banner-3360x840.png",
+      "dimensions": [
+        3360,
+        840
+      ]
+    },
+    "trust_icon": {
+      "path": "/root/Hermes-Agent/etsy-products/2026-05-19-heirloomplanners-shop-trust-launch-kit/heirloomplanners-shop-icon-500x500.png",
+      "dimensions": [
+        500,
+        500
+      ]
+    }
+  },
+  "products": {
+    "seller": {
+      "listing": "/root/Hermes-Agent/etsy-products/2026-05-18-etsy-seller-profit-listing-command-center/listing.md",
+      "zip": "/root/Hermes-Agent/etsy-products/2026-05-18-etsy-seller-profit-listing-command-center/etsy-seller-command-center-customer-files.zip",
+      "zip_ok": true,
+      "zip_file_count": 12,
+      "title": "Online Seller Profit Tracker & Listing Planner, Small Business Spreadsheet, Digital Product Shop Command Center, Printable Bundle",
+      "title_length": 129,
+      "tags": [
+        "seller planner",
+        "profit tracker",
+        "listing planner",
+        "shop spreadsheet",
+        "shop planner",
+        "product tracker",
+        "seo tracker",
+        "business planner",
+        "digital download",
+        "pricing tracker",
+        "launch planner",
+        "small biz tools",
+        "notion template"
+      ],
+      "tag_count": 13,
+      "tags_over_20": [],
+      "images": [
+        {
+          "path": "/root/Hermes-Agent/etsy-products/2026-05-18-etsy-seller-profit-listing-command-center/listing_images/01-listing-image.png",
+          "dimensions": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "path": "/root/Hermes-Agent/etsy-products/2026-05-18-etsy-seller-profit-listing-command-center/listing_images/02-listing-image.png",
+          "dimensions": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "path": "/root/Hermes-Agent/etsy-products/2026-05-18-etsy-seller-profit-listing-command-center/listing_images/03-listing-image.png",
+          "dimensions": [
+            1536,
+            1024
+          ]
+        }
+      ]
+    },
+    "wedding": {
+      "listing": "/root/Hermes-Agent/etsy-products/2026-05-16-wedding-mini-milestones-kit/listing.md",
+      "zip": "/root/Hermes-Agent/etsy-products/2026-05-16-wedding-mini-milestones-kit/wedding-mini-milestones-kit-customer-files.zip",
+      "zip_ok": true,
+      "zip_file_count": 9,
+      "title": "Wedding Mini Milestones Planner Kit, Rehearsal Dinner Bridal Shower Bach Weekend Budget Timeline, Printable + Spreadsheets",
+      "title_length": 122,
+      "tags": [
+        "wedding planner",
+        "wedding checklist",
+        "bridal shower plan",
+        "rehearsal dinner",
+        "bach weekend plan",
+        "wedding budget",
+        "guest list tracker",
+        "event timeline",
+        "printable planner",
+        "spreadsheet bundle",
+        "digital download",
+        "wedding organizer",
+        "bride planner"
+      ],
+      "tag_count": 13,
+      "tags_over_20": [],
+      "images": [
+        {
+          "path": "/root/Hermes-Agent/etsy-products/2026-05-16-wedding-mini-milestones-kit/listing_images/01-cover-upload.jpg",
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "path": "/root/Hermes-Agent/etsy-products/2026-05-16-wedding-mini-milestones-kit/listing_images/02-bundle-overview-upload.jpg",
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "path": "/root/Hermes-Agent/etsy-products/2026-05-16-wedding-mini-milestones-kit/listing_images/03-how-it-works-upload.jpg",
+          "dimensions": [
+            1200,
+            800
+          ]
+        }
+      ]
+    },
+    "student": {
+      "listing": "/root/Hermes-Agent/etsy-products/2026-05-17-adhd-student-deadline-rescue-kit/listing.md",
+      "zip": "/root/Hermes-Agent/etsy-products/2026-05-17-adhd-student-deadline-rescue-kit/adhd-student-deadline-rescue-kit-customer-files.zip",
+      "zip_ok": true,
+      "zip_file_count": 16,
+      "title": "ADHD Student Planner Bundle, Deadline Tracker, Assignment Tracker, Study Planner, Syllabus Organizer, Printable + Notion + Sheets",
+      "title_length": 129,
+      "tags": [
+        "adhd student planner",
+        "deadline tracker",
+        "assignment tracker",
+        "study planner",
+        "syllabus organizer",
+        "student printable",
+        "college planner",
+        "notion student",
+        "google sheets",
+        "exam planner",
+        "homework tracker",
+        "digital planner",
+        "school template"
+      ],
+      "tag_count": 13,
+      "tags_over_20": [],
+      "images": [
+        {
+          "path": "/root/Hermes-Agent/etsy-products/2026-05-17-adhd-student-deadline-rescue-kit/images/01-cover-openai.png",
+          "dimensions": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "path": "/root/Hermes-Agent/etsy-products/2026-05-17-adhd-student-deadline-rescue-kit/images/02-bundle-overview-openai.png",
+          "dimensions": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "path": "/root/Hermes-Agent/etsy-products/2026-05-17-adhd-student-deadline-rescue-kit/images/03-how-it-works-openai.png",
+          "dimensions": [
+            1536,
+            1024
+          ]
+        }
+      ]
+    }
+  }
+}
