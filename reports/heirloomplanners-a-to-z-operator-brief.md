@@ -52,9 +52,9 @@ Each daily run should report:
 6. Next best move for tomorrow.
 
 ## Near-term priorities
-1. Complete shop trust assets using the 2026-05-19 trust kit: banner PNG, icon/seller photo, shop announcement, about/story, FAQ. Use `/root/Hermes-Agent/reports/2026-05-20-heirloomplanners-publishing-control-sheet.md` as the current copy-paste upload packet; `/root/Hermes-Agent/reports/2026-05-22-heirloomplanners-shipping-status.md` confirms the wider backlog is still upload-ready.
+1. Complete shop trust assets using the 2026-05-19 trust kit: banner PNG, icon/seller photo, shop announcement, about/story, FAQ. Use `/root/Hermes-Agent/reports/2026-05-20-heirloomplanners-publishing-control-sheet.md` as the current copy-paste upload packet; `/root/Hermes-Agent/reports/2026-05-23-heirloomplanners-shipping-status.md` confirms the wider backlog is still upload-ready.
 2. Publish or save verified drafts for existing ready packages before creating much more inventory: Online Seller Profit & Listing Command Center first, then wedding/event, then student/ADHD.
 3. After at least 3 listings are live, track daily listing count, views, visits, favorites, orders, conversion, and revenue to identify winning niches.
 4. Increase listing count with focused bundles priced around $9.99–$19.99 once the trust/publishing bottleneck is cleared.
 5. Build enough niche depth for Etsy SEO around niches that show early traffic/favorites/orders.
-6. Improve automatic Etsy draft creation/upload verification; current obstacle is the Mac Chrome/CDP tunnel: port 9223 is listening via sshd but CDP discovery hangs/timeouts, while 9222 is closed.
+6. Improve automatic Etsy draft creation/upload verification; current obstacle is that today no CDP listener was reachable on ports 9222, 9223, or 9224 from the cron host.

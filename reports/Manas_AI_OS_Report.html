@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manas AI OS: Two-Device Automation & Life Operating System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#08090a;
+      --panel:#0f1011;
+      --card:rgba(255,255,255,.035);
+      --card-strong:rgba(255,255,255,.065);
+      --line:rgba(255,255,255,.08);
+      --line-soft:rgba(255,255,255,.05);
+      --text:#f7f8f8;
+      --muted:#a6adbb;
+      --soft:#707782;
+      --accent:#7c82ff;
+      --accent-2:#5e6ad2;
+      --blue:#2997ff;
+      --green:#42d392;
+      --gold:#f6c46b;
+      --rose:#ff8ba7;
+      --paper:#f6f5f4;
+      --ink:#1d1d1f;
+      --shadow: 0 32px 120px rgba(0,0,0,.45);
+      --radius-xl:28px;
+      --radius-lg:20px;
+      --radius-md:14px;
+      --radius-sm:9px;
+      --mono:'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --sans:'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:
+        radial-gradient(circle at 14% -10%, rgba(124,130,255,.30), transparent 30%),
+        radial-gradient(circle at 86% 4%, rgba(41,151,255,.18), transparent 26%),
+        radial-gradient(circle at 50% 100%, rgba(66,211,146,.12), transparent 28%),
+        var(--bg);
+      line-height:1.55;
+      font-feature-settings:"cv01","ss03";
+    }
+    a{color:inherit}
+    .noise{
+      position:fixed; inset:0; pointer-events:none; opacity:.22; z-index:0;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+      mix-blend-mode:soft-light;
+    }
+    .shell{position:relative; z-index:1; max-width:1180px; margin:0 auto; padding:28px 24px 80px;}
+    .nav{
+      position:sticky; top:14px; z-index:20;
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      padding:12px 14px 12px 18px; margin-bottom:68px;
+      border:1px solid var(--line); background:rgba(15,16,17,.72);
+      backdrop-filter: blur(18px) saturate(160%); border-radius:999px;
+      box-shadow:0 8px 40px rgba(0,0,0,.25);
+    }
+    .brand{display:flex; align-items:center; gap:10px; font-weight:650; letter-spacing:-.02em;}
+    .brand-mark{width:28px; height:28px; border-radius:9px; background:linear-gradient(135deg,var(--accent),var(--blue)); display:grid; place-items:center; box-shadow:0 8px 24px rgba(124,130,255,.38);}
+    .brand-mark:after{content:"M"; font-size:13px; font-weight:800; color:white;}
+    .nav-links{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;}
+    .nav-links a{font-size:12px; color:var(--muted); text-decoration:none; padding:8px 10px; border-radius:999px;}
+    .nav-links a:hover{background:rgba(255,255,255,.06); color:var(--text)}
+    .hero{padding:30px 0 76px; display:grid; grid-template-columns:1.08fr .92fr; gap:42px; align-items:center;}
+    .eyebrow{display:inline-flex; align-items:center; gap:8px; padding:7px 10px; border:1px solid var(--line); border-radius:999px; color:#d7dcff; background:rgba(124,130,255,.08); font-size:12px; font-weight:600; letter-spacing:.04em; text-transform:uppercase;}
+    .dot{width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 18px var(--green)}
+    h1{font-size:clamp(46px, 7vw, 86px); line-height:.95; letter-spacing:-.075em; margin:20px 0 22px; max-width:780px;}
+    .hero p{font-size:19px; color:var(--muted); max-width:620px; margin:0 0 26px;}
+    .hero-actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:28px;}
+    .btn{display:inline-flex; align-items:center; gap:9px; padding:12px 16px; border-radius:999px; text-decoration:none; font-weight:650; font-size:14px; border:1px solid var(--line); background:rgba(255,255,255,.04); color:var(--text);}
+    .btn.primary{background:linear-gradient(135deg,var(--accent-2),var(--accent)); border-color:transparent; box-shadow:0 12px 40px rgba(94,106,210,.35)}
+    .hero-card{border:1px solid var(--line); background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025)); border-radius:var(--radius-xl); padding:22px; box-shadow:var(--shadow);}
+    .device-map{display:grid; gap:14px;}
+    .device{border:1px solid var(--line-soft); background:rgba(0,0,0,.22); border-radius:20px; padding:18px;}
+    .device-top{display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:16px;}
+    .device h3{margin:0; font-size:20px; letter-spacing:-.04em;}
+    .device .tag{font-family:var(--mono); color:var(--green); font-size:11px; border:1px solid rgba(66,211,146,.25); padding:4px 7px; border-radius:999px; background:rgba(66,211,146,.08)}
+    .device ul{margin:0; padding-left:18px; color:var(--muted); font-size:14px;}
+    .section{padding:74px 0; border-top:1px solid var(--line-soft);}
+    .section-header{display:flex; justify-content:space-between; gap:24px; align-items:end; margin-bottom:28px;}
+    .section-kicker{font-family:var(--mono); color:var(--accent); font-size:12px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:10px;}
+    h2{font-size:clamp(32px, 4.4vw, 54px); line-height:1; letter-spacing:-.055em; margin:0; max-width:760px;}
+    .section-header p{max-width:390px; margin:0; color:var(--muted); font-size:15px;}
+    .grid{display:grid; gap:16px;}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+    .card{border:1px solid var(--line); background:var(--card); border-radius:var(--radius-lg); padding:22px; box-shadow:0 1px 0 rgba(255,255,255,.03) inset;}
+    .card.strong{background:var(--card-strong)}
+    .card h3{font-size:22px; line-height:1.1; letter-spacing:-.045em; margin:0 0 10px;}
+    .card p{color:var(--muted); margin:0; font-size:14.5px;}
+    .card ul{margin:14px 0 0; padding-left:18px; color:var(--muted); font-size:14px;}
+    .pill{display:inline-flex; width:max-content; padding:5px 8px; border-radius:999px; border:1px solid var(--line); background:rgba(255,255,255,.035); color:#d9dcff; font-size:11px; font-family:var(--mono); margin-bottom:12px;}
+    .matrix{display:grid; grid-template-columns:1fr 62px 1fr; gap:14px; align-items:stretch;}
+    .arrow{display:grid; place-items:center; color:var(--accent); font-size:34px;}
+    .table{width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; border:1px solid var(--line); border-radius:var(--radius-lg); background:rgba(255,255,255,.025);}
+    .table th,.table td{padding:14px 15px; text-align:left; border-bottom:1px solid var(--line-soft); font-size:14px; vertical-align:top;}
+    .table th{color:#e5e7ff; font-size:12px; text-transform:uppercase; letter-spacing:.06em; background:rgba(255,255,255,.045);}
+    .table tr:last-child td{border-bottom:0}
+    .table td:last-child,.table th:last-child{text-align:right;}
+    .timeline{position:relative; display:grid; gap:14px;}
+    .step{display:grid; grid-template-columns:42px 1fr; gap:14px; align-items:start;}
+    .num{width:38px; height:38px; border-radius:13px; background:rgba(124,130,255,.12); border:1px solid rgba(124,130,255,.28); color:#d9dcff; display:grid; place-items:center; font-family:var(--mono); font-size:13px;}
+    .step-body{border:1px solid var(--line); background:rgba(255,255,255,.03); border-radius:18px; padding:16px;}
+    .step-body h4{margin:0 0 6px; font-size:17px; letter-spacing:-.025em;}
+    .step-body p{margin:0; color:var(--muted); font-size:14px;}
+    .callout{border:1px solid rgba(246,196,107,.24); background:linear-gradient(135deg, rgba(246,196,107,.13), rgba(255,255,255,.035)); border-radius:var(--radius-xl); padding:26px; margin-top:22px;}
+    .callout h3{margin:0 0 8px; font-size:26px; letter-spacing:-.045em;}
+    .callout p{margin:0; color:#e9dfc9;}
+    .light-page{background:var(--paper); color:var(--ink); border-radius:34px; padding:38px; box-shadow:0 28px 100px rgba(0,0,0,.28);}
+    .light-page h2,.light-page h3{color:var(--ink)}
+    .light-page p,.light-page li{color:#615d59}
+    .light-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:22px;}
+    .light-card{background:white; border:1px solid rgba(0,0,0,.09); border-radius:18px; padding:20px; box-shadow:rgba(0,0,0,.04) 0 4px 18px, rgba(0,0,0,.02) 0 1px 4px;}
+    .score{font-size:36px; line-height:1; letter-spacing:-.055em; font-weight:750; margin-bottom:8px;}
+    .footer{padding:36px 0 0; color:var(--soft); font-size:13px; display:flex; justify-content:space-between; gap:20px; border-top:1px solid var(--line-soft);}
+    .print-note{display:none}
+    @media(max-width:880px){
+      .hero,.grid.cols-2,.grid.cols-3,.light-grid,.matrix{grid-template-columns:1fr}
+      .arrow{transform:rotate(90deg)}
+      .section-header{display:block}.section-header p{margin-top:12px}
+      .nav{align-items:flex-start; border-radius:22px}.nav-links{display:none}
+    }
+    @media print{
+      body{background:white; color:#111}.noise,.nav,.hero-actions{display:none}.shell{max-width:none; padding:0}.section{page-break-inside:avoid; border-top:1px solid #ddd}.card,.hero-card,.device,.step-body,.callout{background:white; color:#111; border:1px solid #ddd; box-shadow:none}.card p,.card li,.device li,.step-body p,.section-header p{color:#555}h1,h2,h3,h4{color:#111}.print-note{display:block}.light-page{box-shadow:none;border:1px solid #ddd}.table th,.table td{color:#111;border-color:#ddd}.footer{color:#555;border-color:#ddd}
+    }
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+  <main class="shell">
+    <nav class="nav">
+      <div class="brand"><span class="brand-mark"></span><span>Manas AI OS</span></div>
+      <div class="nav-links">
+        <a href="#overview">Overview</a><a href="#devices">Devices</a><a href="#stack">Stack</a><a href="#automations">Automations</a><a href="#roadmap">Roadmap</a><a href="#rules">Rules</a>
+      </div>
+    </nav>
+
+    <section class="hero" id="overview">
+      <div>
+        <span class="eyebrow"><span class="dot"></span> Personal AI Operating System Report</span>
+        <h1>Turn two MacBooks into a one-person AI studio.</h1>
+        <p>A structured, beautiful, execution-first plan for using your old M2 Air and future M5 Pro MacBook as an always-on AI life, work, app, content, and wealth automation system.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#roadmap">Start with the 30-day setup →</a>
+          <a class="btn" href="#automations">View automations</a>
+        </div>
+      </div>
+      <aside class="hero-card">
+        <div class="device-map">
+          <div class="device">
+            <div class="device-top"><h3>New MacBook Pro M5 Pro</h3><span class="tag">CREATE</span></div>
+            <ul><li>Main builder cockpit</li><li>Claude Code, Codex, Xcode, design, video, app builds</li><li>Heavy creative work with OpenAI, Higgsfield, Magnific</li></ul>
+          </div>
+          <div class="device">
+            <div class="device-top"><h3>Old MacBook Air M2</h3><span class="tag">OPERATE</span></div>
+            <ul><li>Always-on Hermes server</li><li>Daily briefs, cron agents, browser monitoring</li><li>Life, app, client, stock and content operations</li></ul>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" id="devices">
+      <div class="section-header">
+        <div><div class="section-kicker">01 / Device Strategy</div><h2>Separate creation from operations.</h2></div>
+        <p>The biggest upgrade is not raw power. It is assigning each machine a permanent job so your systems keep running even while you sleep.</p>
+      </div>
+      <div class="matrix">
+        <div class="card strong"><span class="pill">Main Machine</span><h3>M5 Pro MacBook</h3><p>Your high-performance workspace for deep creation and execution.</p><ul><li>Build Clearmeds, WiseAI and new AI app experiments</li><li>Run Claude Code and Codex inside GitHub repos</li><li>Create app promos, ads, demo videos and client work</li><li>Use Higgsfield for cinematic motion and Magnific for premium upscaling</li><li>Run local AI tools like Ollama, LM Studio, ComfyUI when useful</li></ul></div>
+        <div class="arrow">→</div>
+        <div class="card strong"><span class="pill">Always-On Machine</span><h3>M2 Air</h3><p>Your low-friction AI operator that monitors, summarizes and reminds.</p><ul><li>Hermes gateway and Telegram assistant</li><li>n8n, Uptime Kuma, cron jobs, lightweight scripts</li><li>Daily briefs, nightly reports, stock/news watchlists</li><li>Client follow-up and app studio status tracking</li><li>GitHub backup/sync and browser automation</li></ul></div>
+      </div>
+    </section>
+
+    <section class="section" id="stack">
+      <div class="section-header">
+        <div><div class="section-kicker">02 / Core Stack</div><h2>Each tool gets one clear role.</h2></div>
+        <p>Do not let the stack become chaos. Assign every tool a specific job and measure whether it produces outputs.</p>
+      </div>
+      <div class="grid cols-3">
+        <div class="card"><span class="pill">Command Layer</span><h3>Hermes</h3><p>Runs your AI operating system: memory, Telegram, cron jobs, reports, reminders, subagents and automation control.</p></div>
+        <div class="card"><span class="pill">Deep Builder</span><h3>Claude</h3><p>Use for architecture, coding, strategy, debugging, code review, long-form thinking and higher-quality product decisions.</p></div>
+        <div class="card"><span class="pill">Creative Engine</span><h3>OpenAI</h3><p>Use for fast ideation, image generation, multimodal reasoning, creative variations, copy and product mockups.</p></div>
+        <div class="card"><span class="pill">Execution Memory</span><h3>GitHub</h3><p>Source of truth for apps, automations, prompts, docs, dashboards, project history and agent-readable context.</p></div>
+        <div class="card"><span class="pill">Motion</span><h3>Higgsfield</h3><p>Use for cinematic app demos, founder videos, ad concepts, AI creative scenes and premium motion tests.</p></div>
+        <div class="card"><span class="pill">Polish</span><h3>Magnific</h3><p>Use for upscaling app visuals, thumbnails, ad assets, brand images and high-quality delivery materials.</p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="light-page">
+        <div class="section-kicker" style="color:#0075de">03 / Operating Model</div>
+        <h2>Your AI departments</h2>
+        <p style="max-width:760px">Think of agents as departments, not random chats. Hermes coordinates them; Claude and Codex execute; GitHub stores the permanent record.</p>
+        <div class="light-grid">
+          <div class="light-card"><div class="score">01</div><h3>Chief of Staff</h3><p>Morning brief, nightly review, task prioritization, reminders and weekly review.</p></div>
+          <div class="light-card"><div class="score">02</div><h3>App Studio Agent</h3><p>Tracks Clearmeds, WiseAI, app ideas, validation tests and launch checklists.</p></div>
+          <div class="light-card"><div class="score">03</div><h3>Growth Agent</h3><p>Drafts X posts, launch copy, ad concepts, landing page ideas and content calendars.</p></div>
+          <div class="light-card"><div class="score">04</div><h3>Investing Research Agent</h3><p>Monitors AI, semiconductors, nuclear, political signals and major news catalysts.</p></div>
+          <div class="light-card"><div class="score">05</div><h3>Client Ops Agent</h3><p>Tracks leads, follow-ups, proposals, deliverables, invoices and AiteitAI offers.</p></div>
+          <div class="light-card"><div class="score">06</div><h3>Knowledge Agent</h3><p>Maintains notes, learnings, prompts, reusable procedures and personal memory.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="automations">
+      <div class="section-header">
+        <div><div class="section-kicker">04 / Automation Suite</div><h2>The first systems to build.</h2></div>
+        <p>Prioritize automations that improve money, focus, app shipping, content, and decision-making.</p>
+      </div>
+      <table class="table">
+        <thead><tr><th>System</th><th>What it does</th><th>Primary tool</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr><td>Morning CEO Brief</td><td>Top 3 priorities, schedule, market watch, app/client alerts, one ask from you.</td><td>Hermes Cron</td><td>High</td></tr>
+          <tr><td>Nightly Accountability</td><td>Reviews work done, blockers, slipped tasks and tomorrow’s focus.</td><td>Hermes Cron</td><td>High</td></tr>
+          <tr><td>AI App Studio Dashboard</td><td>Tracks app ideas, validation status, signals, next action and kill/continue decision.</td><td>GitHub + Notion/Sheets</td><td>High</td></tr>
+          <tr><td>Stock Intelligence Agent</td><td>Watches AI, semis, nuclear, Trump/media/deal signals and summarizes actionability.</td><td>Hermes + Web</td><td>Medium</td></tr>
+          <tr><td>Content Engine</td><td>Drafts personal `manas_builds` posts from your actual work and learnings.</td><td>Hermes + OpenAI/Claude</td><td>High</td></tr>
+          <tr><td>Client Follow-up Agent</td><td>Reminds you to follow up, generate proposals, track delivery and payments.</td><td>n8n + Sheets/Notion</td><td>High</td></tr>
+          <tr><td>Uptime Monitor</td><td>Alerts if Clearmeds/WiseAI/AiteitAI sites or APIs go down.</td><td>Uptime Kuma</td><td>Medium</td></tr>
+          <tr><td>GitHub Sync</td><td>Daily redacted workspace summary, commits durable docs, keeps records safe.</td><td>Hermes + GitHub</td><td>Medium</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section" id="roadmap">
+      <div class="section-header">
+        <div><div class="section-kicker">05 / 30-Day Roadmap</div><h2>Build the OS in layers.</h2></div>
+        <p>Do not automate everything at once. Build the foundation first, then business, then app studio, then investing intelligence.</p>
+      </div>
+      <div class="timeline">
+        <div class="step"><div class="num">01</div><div class="step-body"><h4>Week 1: Foundation</h4><p>Create the Manas AI OS repo, set up old M2 Air as always-on Hermes machine, enable daily briefs and nightly reviews.</p></div></div>
+        <div class="step"><div class="num">02</div><div class="step-body"><h4>Week 2: Money & Workflows</h4><p>Set up net worth tracker, AiteitAI lead tracker, client follow-ups, proposal templates and content draft system.</p></div></div>
+        <div class="step"><div class="num">03</div><div class="step-body"><h4>Week 3: App Studio</h4><p>Create dashboards and CLAUDE.md files for Clearmeds, WiseAI and new app experiments. Track validation, not just building.</p></div></div>
+        <div class="step"><div class="num">04</div><div class="step-body"><h4>Week 4: Creative & Investing Layer</h4><p>Add Higgsfield/Magnific creative pipeline, stock intelligence, weekly review and launch-readiness checklists.</p></div></div>
+      </div>
+      <div class="callout"><h3>Principle: AI should produce outputs, not vibes.</h3><p>Every automation must create a message, file, task, report, alert, draft, commit, dashboard update or decision prompt.</p></div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div><div class="section-kicker">06 / Suggested Repo</div><h2>Create one source of truth.</h2></div>
+        <p>This repo becomes the operating manual for your life, work, apps, automations and investing research.</p>
+      </div>
+      <div class="card strong">
+<pre style="white-space:pre-wrap; margin:0; color:#d0d6e0; font-family:var(--mono); font-size:13px; line-height:1.7;">manas-ai-os/
+├── README.md
+├── LIFE_DASHBOARD.md
+├── NET_WORTH.md
+├── DAILY_REVIEW.md
+├── WEEKLY_REVIEW.md
+├── APP_STUDIO.md
+├── AITEITAI_PIPELINE.md
+├── STOCK_WATCHLIST.md
+├── CONTENT_IDEAS.md
+├── CLAUDE.md
+├── prompts/
+│   ├── morning-brief.md
+│   ├── nightly-review.md
+│   ├── x-post-drafter.md
+│   ├── stock-signal-review.md
+│   └── app-validation.md
+├── automations/
+│   ├── cron-jobs.md
+│   ├── n8n-flows.md
+│   └── scripts/
+└── dashboards/</pre>
+      </div>
+    </section>
+
+    <section class="section" id="rules">
+      <div class="section-header">
+        <div><div class="section-kicker">07 / Operating Rules</div><h2>Keep the system powerful but safe.</h2></div>
+        <p>These rules prevent your AI setup from becoming noisy, risky or over-automated.</p>
+      </div>
+      <div class="grid cols-2">
+        <div class="card"><h3>No auto-posting</h3><p>Hermes can draft X posts, client messages and launch content. You approve before anything public goes out.</p></div>
+        <div class="card"><h3>No auto-trading</h3><p>Stock agents can detect signals and summarize risk. You make the final decision before any trade.</p></div>
+        <div class="card"><h3>GitHub is memory</h3><p>If it matters, it belongs in a repo: plans, prompts, app docs, workflows, dashboards and learnings.</p></div>
+        <div class="card"><h3>Weekly cleanup</h3><p>Every Sunday: review subscriptions, dead app ideas, dashboards, net worth, automations and next week’s focus.</p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="callout">
+        <h3>Final direction</h3>
+        <p>Your old M2 Air becomes the always-on operator. Your new M5 Pro becomes the builder machine. Hermes is the command layer. Claude is the deep builder. OpenAI is the creative engine. Higgsfield and Magnific make the output look premium. GitHub stores the system. Together, this lets you operate like a small AI-native studio while still being one person in college.</p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>Prepared for Manas · Personal AI OS Report</div>
+      <div>Designed as a browser-readable and print-friendly HTML report</div>
+    </footer>
+  </main>
+</body>
+</html>
