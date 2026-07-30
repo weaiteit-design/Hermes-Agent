@@ -40,15 +40,16 @@
     var paths=[].slice.call(stage.querySelectorAll('.opath'));
     var ghost=stage.querySelector('.ghost'),wordmark=stage.querySelector('.sun');
     var entry=reduce?1:0;
-    var A=[0,0,0],Bv=[0,0,0];
-    var SPD=[18,11,6];                // elegant inner-to-outer orbit speeds
-    var SIZE=[.70,.86,1.04,.76,.92,1.00,.72,1.05,.80]; // compact hierarchy, safely inside viewport
+    var A=[0,0,0],Bv=[0,0,0],stageW=0,stageH=0;
+    var SPD=[17,10,5.5];               // calm inner-to-outer orbit speeds
+    var SIZE=[.72,.78,.84,.74,.80,.82,.72,.81,.75]; // controlled depth without oversized collisions
     var TILT=-7*Math.PI/180;
     var drag=0,vel=0,dragging=false,lastX=0,hover=false,t=0,last=null;
     function size(){
-      var w=Math.min(stage.clientWidth,1440),h=stage.clientHeight;
-      A[0]=w*0.155;A[1]=w*0.255;A[2]=w*0.355;
-      Bv[0]=h*0.115;Bv[1]=h*0.205;Bv[2]=h*0.315;
+      stageW=stage.clientWidth;stageH=stage.clientHeight;
+      var w=Math.min(stageW,1440),h=stageH;
+      A[0]=w*0.14;A[1]=w*0.26;A[2]=w*0.38;
+      Bv[0]=h*0.10;Bv[1]=h*0.225;Bv[2]=h*0.35;
       for(var i=0;i<3;i++){if(paths[i]){paths[i].style.width=(A[i]*2)+'px';paths[i].style.height=(Bv[i]*2)+'px';}}
     }
     function entryProgress(){
@@ -70,20 +71,37 @@
         }
         t+=dt*(hover?0.5:1);
       }
+      var states=[];
       for(var i=0;i<planets.length;i++){
         var p=planets[i],o=+p.getAttribute('data-o'),off=+p.getAttribute('data-off');
         var th=((reduce?0:SPD[o]*t)+off+drag)*Math.PI/180;
         var x=A[o]*Math.cos(th),y=Bv[o]*Math.sin(th);
-        var xr=x*Math.cos(TILT)-y*Math.sin(TILT),yr=x*Math.sin(TILT)+y*Math.cos(TILT);
-        var depth=Math.sin(th);                    // foreground at lower arc
-        var perspective=.80+.34*((depth+1)/2);
-        var reveal=.18+.82*entry;
-        xr*=reveal;yr*=reveal;
+        var xr=(x*Math.cos(TILT)-y*Math.sin(TILT)),yr=(x*Math.sin(TILT)+y*Math.cos(TILT));
+        var depth=Math.sin(th),perspective=.82+.28*((depth+1)/2);
+        var reveal=.18+.82*entry;xr*=reveal;yr*=reveal;
         var sc=perspective*SIZE[i]*(.76+.24*entry);
-        p.style.transform='translate(calc(-50% + '+xr.toFixed(1)+'px),calc(-50% + '+yr.toFixed(1)+'px)) scale('+sc.toFixed(3)+')';
-        p.style.zIndex=String(Math.round(50+depth*40));
-        p.style.opacity=((0.72+0.28*((depth+1)/2))*entry).toFixed(3);
-        p.style.filter='brightness('+(0.94+0.06*((depth+1)/2)).toFixed(3)+') saturate('+(1.02+0.12*((depth+1)/2)).toFixed(3)+')';
+        var pc=p.querySelector('.pc'),diam=pc?pc.offsetWidth:148;
+        states.push({p:p,x:xr,y:yr,sc:sc,r:diam*sc*.5,depth:depth});
+      }
+      // Reserve a clean zone around AITEIT, then resolve sphere-to-sphere collisions.
+      for(var c=0;c<states.length;c++){
+        var s=states[c],d=Math.sqrt(s.x*s.x+s.y*s.y)||.001,min=(98+s.r)*(.38+.62*entry);
+        if(d<min){var push=min-d;s.x+=s.x/d*push;s.y+=s.y/d*push;}
+      }
+      for(var pass=0;pass<5;pass++)for(var a=0;a<states.length;a++)for(var b=a+1;b<states.length;b++){
+        var one=states[a],two=states[b],dx=two.x-one.x,dy=two.y-one.y,dist=Math.sqrt(dx*dx+dy*dy);
+        var gap=(one.r+two.r+16)*(.35+.65*entry);
+        if(dist<gap){if(dist<.001){dx=Math.cos((a+1)*(b+2));dy=Math.sin((a+1)*(b+2));dist=1;}
+          var move=(gap-dist)*.5,nx=dx/dist,ny=dy/dist;
+          one.x-=nx*move;one.y-=ny*move;two.x+=nx*move;two.y+=ny*move;}
+      }
+      for(var q=0;q<states.length;q++){
+        var st=states[q],maxX=Math.max(40,stageW*.5-st.r-28),maxY=Math.max(40,stageH*.5-st.r-54);
+        st.x=Math.max(-maxX,Math.min(maxX,st.x));st.y=Math.max(-maxY,Math.min(maxY,st.y));
+        st.p.style.transform='translate(calc(-50% + '+st.x.toFixed(1)+'px),calc(-50% + '+st.y.toFixed(1)+'px)) scale('+st.sc.toFixed(3)+')';
+        st.p.style.zIndex=String(Math.round(50+st.depth*40));
+        st.p.style.opacity=((0.76+0.24*((st.depth+1)/2))*entry).toFixed(3);
+        st.p.style.filter='brightness('+(0.96+0.04*((st.depth+1)/2)).toFixed(3)+') saturate('+(1.00+0.08*((st.depth+1)/2)).toFixed(3)+')';
       }
       requestAnimationFrame(frame);
     }

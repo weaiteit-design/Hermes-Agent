@@ -141,16 +141,20 @@ a{color:inherit;text-decoration:none}
 .sun .s1{position:relative;font-family:var(--wide);font-weight:800;font-size:clamp(38px,5.2vw,78px);line-height:.9;letter-spacing:.1em;padding-left:.1em;color:#151515;
   text-shadow:0 13px 34px rgba(20,20,20,.12)}
 .sun .s2{display:none}
-.planet{position:absolute;left:50%;top:50%;display:flex;flex-direction:column;align-items:center;gap:9px;will-change:transform,filter,opacity;transform-origin:center}
-.planet .pc{position:relative;width:clamp(104px,10.8vw,156px);height:clamp(104px,10.8vw,156px);border-radius:50%;
-  border:2px solid color-mix(in srgb,var(--c,#888) 84%,#fff);display:flex;align-items:center;justify-content:center;overflow:hidden;
-  background:radial-gradient(circle at 29% 23%,#fff 0%,color-mix(in srgb,var(--c,#888) 15%,#fff) 45%,color-mix(in srgb,var(--c,#888) 34%,#fff) 100%);
-  box-shadow:inset -17px -20px 30px color-mix(in srgb,var(--c,#888) 30%,transparent),inset 8px 8px 18px rgba(255,255,255,.74),0 26px 52px -18px color-mix(in srgb,var(--c,#222) 76%,transparent)}
+.planet{position:absolute;left:50%;top:50%;display:flex;flex-direction:column;align-items:center;gap:9px;will-change:transform,filter,opacity;transform-origin:center;perspective:700px}
+.planet .pc{position:relative;width:clamp(102px,10.2vw,148px);height:clamp(102px,10.2vw,148px);border-radius:50%;
+  border:1px solid color-mix(in srgb,var(--c,#888) 58%,#d9dde2);display:flex;align-items:center;justify-content:center;overflow:hidden;transform:translateZ(0);
+  background:
+   radial-gradient(circle at 29% 20%,rgba(255,255,255,.98) 0 3%,rgba(255,255,255,.68) 5%,transparent 18%),
+   radial-gradient(circle at 34% 29%,#fff 0%,color-mix(in srgb,var(--c,#888) 13%,#f7f8fa) 29%,color-mix(in srgb,var(--c,#888) 42%,#c9ced4) 67%,color-mix(in srgb,var(--c,#888) 72%,#343941) 100%);
+  box-shadow:inset -25px -29px 36px color-mix(in srgb,var(--c,#333) 43%,rgba(0,0,0,.34)),inset 12px 13px 25px rgba(255,255,255,.88),inset 0 0 0 1px rgba(255,255,255,.38),0 28px 48px -20px color-mix(in srgb,var(--c,#222) 72%,rgba(0,0,0,.30)),0 5px 12px rgba(20,20,20,.10)}
 .planet .pc::before{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;z-index:2;
-  background:radial-gradient(circle at 27% 20%,rgba(255,255,255,.76) 0%,rgba(255,255,255,.16) 25%,transparent 48%),linear-gradient(126deg,transparent 46%,rgba(0,0,0,.08) 100%)}
-.planet .pc img{position:relative;z-index:1;max-width:72%;max-height:61%;object-fit:contain;display:block;filter:drop-shadow(0 2px 1px rgba(0,0,0,.06))}
+  background:radial-gradient(ellipse 48% 28% at 31% 17%,rgba(255,255,255,.88) 0%,rgba(255,255,255,.26) 46%,transparent 72%),linear-gradient(126deg,transparent 43%,rgba(0,0,0,.14) 100%)}
+.planet .pc::after{content:"";position:absolute;left:17%;right:17%;bottom:7%;height:17%;border-radius:50%;z-index:2;pointer-events:none;
+  background:linear-gradient(180deg,transparent,rgba(255,255,255,.24));filter:blur(2px);opacity:.75}
+.planet .pc img{position:relative;z-index:3;max-width:70%;max-height:59%;object-fit:contain;display:block;filter:drop-shadow(0 2px 2px rgba(255,255,255,.72)) drop-shadow(0 2px 2px rgba(0,0,0,.08))}
 .planet .pc img.gozero-logo{max-width:68%;max-height:60%;filter:drop-shadow(0 5px 8px rgba(194,24,112,.16))}
-.planet .pc .tx{position:relative;z-index:1;font-weight:700;text-align:center;line-height:1.12;color:var(--ink)}
+.planet .pc .tx{position:relative;z-index:3;font-weight:700;text-align:center;line-height:1.12;color:var(--ink);text-shadow:0 1px 2px rgba(255,255,255,.82)}
 .planet .pl{font-size:12.5px;font-weight:600;color:var(--ink);letter-spacing:-.01em;white-space:nowrap;background:rgba(255,255,255,.82);padding:3px 9px;border-radius:20px;box-shadow:0 5px 18px rgba(20,20,20,.06)}
 .bnote{position:absolute;left:0;right:0;bottom:12px;z-index:60;text-align:center;font-size:12.5px;color:var(--ink3);letter-spacing:-.01em;pointer-events:none}
 @media(max-width:760px){.brandstage{height:78svh;min-height:600px}.ghost{font-size:21vw}.planet .pc{width:112px;height:112px}}
@@ -437,15 +441,16 @@ a{color:inherit;text-decoration:none}
     var paths=[].slice.call(stage.querySelectorAll('.opath'));
     var ghost=stage.querySelector('.ghost'),wordmark=stage.querySelector('.sun');
     var entry=reduce?1:0;
-    var A=[0,0,0],Bv=[0,0,0];
-    var SPD=[18,11,6];                // elegant inner-to-outer orbit speeds
-    var SIZE=[.70,.86,1.04,.76,.92,1.00,.72,1.05,.80]; // compact hierarchy, safely inside viewport
+    var A=[0,0,0],Bv=[0,0,0],stageW=0,stageH=0;
+    var SPD=[17,10,5.5];               // calm inner-to-outer orbit speeds
+    var SIZE=[.72,.78,.84,.74,.80,.82,.72,.81,.75]; // controlled depth without oversized collisions
     var TILT=-7*Math.PI/180;
     var drag=0,vel=0,dragging=false,lastX=0,hover=false,t=0,last=null;
     function size(){
-      var w=Math.min(stage.clientWidth,1440),h=stage.clientHeight;
-      A[0]=w*0.155;A[1]=w*0.255;A[2]=w*0.355;
-      Bv[0]=h*0.115;Bv[1]=h*0.205;Bv[2]=h*0.315;
+      stageW=stage.clientWidth;stageH=stage.clientHeight;
+      var w=Math.min(stageW,1440),h=stageH;
+      A[0]=w*0.14;A[1]=w*0.26;A[2]=w*0.38;
+      Bv[0]=h*0.10;Bv[1]=h*0.225;Bv[2]=h*0.35;
       for(var i=0;i<3;i++){if(paths[i]){paths[i].style.width=(A[i]*2)+'px';paths[i].style.height=(Bv[i]*2)+'px';}}
     }
     function entryProgress(){
@@ -467,20 +472,37 @@ a{color:inherit;text-decoration:none}
         }
         t+=dt*(hover?0.5:1);
       }
+      var states=[];
       for(var i=0;i<planets.length;i++){
         var p=planets[i],o=+p.getAttribute('data-o'),off=+p.getAttribute('data-off');
         var th=((reduce?0:SPD[o]*t)+off+drag)*Math.PI/180;
         var x=A[o]*Math.cos(th),y=Bv[o]*Math.sin(th);
-        var xr=x*Math.cos(TILT)-y*Math.sin(TILT),yr=x*Math.sin(TILT)+y*Math.cos(TILT);
-        var depth=Math.sin(th);                    // foreground at lower arc
-        var perspective=.80+.34*((depth+1)/2);
-        var reveal=.18+.82*entry;
-        xr*=reveal;yr*=reveal;
+        var xr=(x*Math.cos(TILT)-y*Math.sin(TILT)),yr=(x*Math.sin(TILT)+y*Math.cos(TILT));
+        var depth=Math.sin(th),perspective=.82+.28*((depth+1)/2);
+        var reveal=.18+.82*entry;xr*=reveal;yr*=reveal;
         var sc=perspective*SIZE[i]*(.76+.24*entry);
-        p.style.transform='translate(calc(-50% + '+xr.toFixed(1)+'px),calc(-50% + '+yr.toFixed(1)+'px)) scale('+sc.toFixed(3)+')';
-        p.style.zIndex=String(Math.round(50+depth*40));
-        p.style.opacity=((0.72+0.28*((depth+1)/2))*entry).toFixed(3);
-        p.style.filter='brightness('+(0.94+0.06*((depth+1)/2)).toFixed(3)+') saturate('+(1.02+0.12*((depth+1)/2)).toFixed(3)+')';
+        var pc=p.querySelector('.pc'),diam=pc?pc.offsetWidth:148;
+        states.push({p:p,x:xr,y:yr,sc:sc,r:diam*sc*.5,depth:depth});
+      }
+      // Reserve a clean zone around AITEIT, then resolve sphere-to-sphere collisions.
+      for(var c=0;c<states.length;c++){
+        var s=states[c],d=Math.sqrt(s.x*s.x+s.y*s.y)||.001,min=(98+s.r)*(.38+.62*entry);
+        if(d<min){var push=min-d;s.x+=s.x/d*push;s.y+=s.y/d*push;}
+      }
+      for(var pass=0;pass<5;pass++)for(var a=0;a<states.length;a++)for(var b=a+1;b<states.length;b++){
+        var one=states[a],two=states[b],dx=two.x-one.x,dy=two.y-one.y,dist=Math.sqrt(dx*dx+dy*dy);
+        var gap=(one.r+two.r+16)*(.35+.65*entry);
+        if(dist<gap){if(dist<.001){dx=Math.cos((a+1)*(b+2));dy=Math.sin((a+1)*(b+2));dist=1;}
+          var move=(gap-dist)*.5,nx=dx/dist,ny=dy/dist;
+          one.x-=nx*move;one.y-=ny*move;two.x+=nx*move;two.y+=ny*move;}
+      }
+      for(var q=0;q<states.length;q++){
+        var st=states[q],maxX=Math.max(40,stageW*.5-st.r-28),maxY=Math.max(40,stageH*.5-st.r-54);
+        st.x=Math.max(-maxX,Math.min(maxX,st.x));st.y=Math.max(-maxY,Math.min(maxY,st.y));
+        st.p.style.transform='translate(calc(-50% + '+st.x.toFixed(1)+'px),calc(-50% + '+st.y.toFixed(1)+'px)) scale('+st.sc.toFixed(3)+')';
+        st.p.style.zIndex=String(Math.round(50+st.depth*40));
+        st.p.style.opacity=((0.76+0.24*((st.depth+1)/2))*entry).toFixed(3);
+        st.p.style.filter='brightness('+(0.96+0.04*((st.depth+1)/2)).toFixed(3)+') saturate('+(1.00+0.08*((st.depth+1)/2)).toFixed(3)+')';
       }
       requestAnimationFrame(frame);
     }
