@@ -4,6 +4,7 @@
     document.getElementById('clock').textContent=hh+':'+('0'+m).slice(-2)+' '+ap+' in India';}catch(e){}}
   clock();setInterval(clock,10000);
   var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var progress=document.createElement('div');progress.className='scroll-progress';document.body.appendChild(progress);
   var wrap=document.getElementById('pinwrap'),track=document.getElementById('track');
   var grad=document.querySelector('.grad'),glow=document.querySelector('.grad .glow');
   function onScroll(){var rect=wrap.getBoundingClientRect();var total=wrap.offsetHeight-innerHeight;
@@ -15,7 +16,9 @@
       var o=gp<.35?(gp/.35):(gp>.7?(1-(gp-.7)/.3):1);
       o=Math.min(1,Math.max(0,o));
       var sm=(o*o*(3-2*o)).toFixed(3);glow.style.opacity=sm;
-      var gtx=grad.querySelector('.gtext');if(gtx)gtx.style.opacity=sm;}}
+      var gtx=grad.querySelector('.gtext');if(gtx)gtx.style.opacity=sm;}
+    var doc=document.documentElement,den=Math.max(1,doc.scrollHeight-innerHeight);
+    progress.style.transform='scaleX('+Math.min(1,Math.max(0,scrollY/den)).toFixed(4)+')';}
   addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
   // ensure videos play (autoplay fallback)
   document.querySelectorAll('video').forEach(function(v){v.muted=true;var pr=v.play();if(pr&&pr.catch)pr.catch(function(){});});
@@ -33,18 +36,25 @@
     var stage=document.getElementById('solar');if(!stage)return;
     var planets=[].slice.call(stage.querySelectorAll('.planet'));
     var paths=[].slice.call(stage.querySelectorAll('.opath'));
+    var ghost=stage.querySelector('.ghost'),wordmark=stage.querySelector('.sun');
+    var entry=reduce?1:0;
     var A=[0,0,0],Bv=[0,0,0];
     var SPD=[18,11,6];                // elegant inner-to-outer orbit speeds
     var SIZE=[.70,.86,1.04,.76,.92,1.00,.72,1.05,.80]; // compact hierarchy, safely inside viewport
     var TILT=-7*Math.PI/180;
     var drag=0,vel=0,dragging=false,lastX=0,hover=false,t=0,last=null;
     function size(){
-      var w=stage.clientWidth,h=stage.clientHeight;
+      var w=Math.min(stage.clientWidth,1440),h=stage.clientHeight;
       A[0]=w*0.155;A[1]=w*0.255;A[2]=w*0.355;
       Bv[0]=h*0.115;Bv[1]=h*0.205;Bv[2]=h*0.315;
       for(var i=0;i<3;i++){if(paths[i]){paths[i].style.width=(A[i]*2)+'px';paths[i].style.height=(Bv[i]*2)+'px';}}
     }
-    size();addEventListener('resize',size);
+    function entryProgress(){
+      if(reduce){entry=1;}else{var r=stage.getBoundingClientRect();var raw=(innerHeight-r.top)/(innerHeight*.78);raw=Math.min(1,Math.max(0,raw));entry=raw*raw*(3-2*raw);}
+      if(ghost){ghost.style.opacity=(.28+.72*entry).toFixed(3);ghost.style.transform='translateY(-50%) scaleX('+(.84+.07*entry).toFixed(3)+')';ghost.style.letterSpacing=(-.02-.055*entry).toFixed(3)+'em';}
+      if(wordmark){wordmark.style.opacity=(.25+.75*entry).toFixed(3);wordmark.style.transform='translate(-50%,-50%) scale('+(.78+.22*entry).toFixed(3)+')';}
+    }
+    size();entryProgress();addEventListener('resize',function(){size();entryProgress();});addEventListener('scroll',entryProgress,{passive:true});
     stage.addEventListener('mouseenter',function(){hover=true;});
     stage.addEventListener('mouseleave',function(){hover=false;});
     stage.addEventListener('pointerdown',function(e){dragging=true;lastX=e.clientX;vel=0;stage.classList.add('grabbing');e.preventDefault();});
@@ -65,10 +75,12 @@
         var xr=x*Math.cos(TILT)-y*Math.sin(TILT),yr=x*Math.sin(TILT)+y*Math.cos(TILT);
         var depth=Math.sin(th);                    // foreground at lower arc
         var perspective=.80+.34*((depth+1)/2);
-        var sc=perspective*SIZE[i];
+        var reveal=.18+.82*entry;
+        xr*=reveal;yr*=reveal;
+        var sc=perspective*SIZE[i]*(.76+.24*entry);
         p.style.transform='translate(calc(-50% + '+xr.toFixed(1)+'px),calc(-50% + '+yr.toFixed(1)+'px)) scale('+sc.toFixed(3)+')';
         p.style.zIndex=String(Math.round(50+depth*40));
-        p.style.opacity=(0.72+0.28*((depth+1)/2)).toFixed(3);
+        p.style.opacity=((0.72+0.28*((depth+1)/2))*entry).toFixed(3);
         p.style.filter='brightness('+(0.94+0.06*((depth+1)/2)).toFixed(3)+') saturate('+(1.02+0.12*((depth+1)/2)).toFixed(3)+')';
       }
       requestAnimationFrame(frame);
