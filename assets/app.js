@@ -4,24 +4,34 @@
     document.getElementById('clock').textContent=hh+':'+('0'+m).slice(-2)+' '+ap+' in India';}catch(e){}}
   clock();setInterval(clock,10000);
   var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var appWidth=innerWidth,appHeight=innerHeight;
+  function syncViewport(){
+    appWidth=(outerWidth&&innerWidth>outerWidth*1.04)?outerWidth:innerWidth;
+    appHeight=(outerHeight&&innerHeight>outerHeight*1.04)?Math.max(560,outerHeight-60):innerHeight;
+    document.documentElement.style.setProperty('--app-width',Math.round(appWidth)+'px');
+    document.documentElement.style.setProperty('--app-height',Math.round(appHeight)+'px');
+  }
+  syncViewport();
   var progress=document.createElement('div');progress.className='scroll-progress';document.body.appendChild(progress);
   var wrap=document.getElementById('pinwrap'),track=document.getElementById('track');
+  function layoutPin(){if(!wrap||!track)return;wrap.style.height=(appHeight+Math.max(0,track.scrollWidth-appWidth))+'px';}
+  layoutPin();addEventListener('load',layoutPin);
   var grads=[].slice.call(document.querySelectorAll('.grad'));
-  function onScroll(){var rect=wrap.getBoundingClientRect();var total=wrap.offsetHeight-innerHeight;
-    var p=Math.min(1,Math.max(0,(-rect.top)/total));var dist=track.scrollWidth-innerWidth;
+  function onScroll(){var rect=wrap.getBoundingClientRect();var total=wrap.offsetHeight-appHeight;
+    var p=Math.min(1,Math.max(0,(-rect.top)/total));var dist=track.scrollWidth-appWidth;
     track.style.transform='translateX('+(-p*dist)+'px)';
     // three topic-change transitions: each runs once, in its own location
     grads.forEach(function(grad){var glow=grad.querySelector('.glow');if(!glow)return;
-      var gr=grad.getBoundingClientRect(),gt=Math.max(1,grad.offsetHeight-innerHeight);
+      var gr=grad.getBoundingClientRect(),gt=Math.max(1,grad.offsetHeight-appHeight);
       var gp=Math.min(1,Math.max(0,(-gr.top)/gt));
       var o=gp<.20?(gp/.20):(gp>.84?(1-(gp-.84)/.16):1);
       o=Math.min(1,Math.max(0,o));
       var sm=(o*o*(3-2*o)).toFixed(3);glow.style.opacity=sm;
       var gtx=grad.querySelector('.gtext');if(gtx){gtx.style.opacity=sm;gtx.style.color=gp<.62?'#ffffff':'#171717';}
     });
-    var doc=document.documentElement,den=Math.max(1,doc.scrollHeight-innerHeight);
+    var doc=document.documentElement,den=Math.max(1,doc.scrollHeight-appHeight);
     progress.style.transform='scaleX('+Math.min(1,Math.max(0,scrollY/den)).toFixed(4)+')';}
-  addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
+  addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',function(){syncViewport();layoutPin();onScroll();});onScroll();
   // ensure videos play (autoplay fallback)
   document.querySelectorAll('video').forEach(function(v){v.muted=true;var pr=v.play();if(pr&&pr.catch)pr.catch(function(){});});
   // index hover thumb follows cursor
@@ -53,7 +63,7 @@
       for(var i=0;i<3;i++){if(paths[i]){paths[i].style.width=(A[i]*2)+'px';paths[i].style.height=(Bv[i]*2)+'px';}}
     }
     function entryProgress(){
-      if(reduce){entry=1;}else{var r=stage.getBoundingClientRect();var raw=(innerHeight-r.top)/(innerHeight*.78);raw=Math.min(1,Math.max(0,raw));entry=raw*raw*(3-2*raw);}
+      if(reduce){entry=1;}else{var r=stage.getBoundingClientRect();var raw=(appHeight-r.top)/(appHeight*.78);raw=Math.min(1,Math.max(0,raw));entry=raw*raw*(3-2*raw);}
       if(ghost){ghost.style.opacity=(.28+.72*entry).toFixed(3);ghost.style.transform='translateY(-50%) scaleX('+(.84+.07*entry).toFixed(3)+')';ghost.style.letterSpacing=(-.02-.055*entry).toFixed(3)+'em';}
       if(wordmark){wordmark.style.opacity=(.25+.75*entry).toFixed(3);wordmark.style.transform='translate(-50%,-50%) scale('+(.78+.22*entry).toFixed(3)+')';}
     }
@@ -137,8 +147,8 @@
     var medias=[].slice.call(document.querySelectorAll('.vexp .panel .media video'));
     var ticking=false;
     function par(){medias.forEach(function(m){var r=m.getBoundingClientRect();
-      if(r.bottom<-80||r.top>innerHeight+80)return;
-      var c=(r.top+r.height/2-innerHeight/2)/innerHeight;
+      if(r.bottom<-80||r.top>appHeight+80)return;
+      var c=(r.top+r.height/2-appHeight/2)/appHeight;
       m.style.transform='translateY('+(c*-26).toFixed(1)+'px) scale(1.09)';});ticking=false;}
     addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(par);}},{passive:true});par();
   }
