@@ -34,12 +34,14 @@
     var planets=[].slice.call(stage.querySelectorAll('.planet'));
     var paths=[].slice.call(stage.querySelectorAll('.opath'));
     var A=[0,0,0],Bv=[0,0,0];
-    var SPD=[30,17,10];               // deg/sec per orbit (inner fastest)
+    var SPD=[18,11,6];                // elegant inner-to-outer orbit speeds
+    var SIZE=[.72,.90,1.12,.78,.98,1.08,.74,1.16,.84]; // planet hierarchy, not uniform discs
+    var TILT=-7*Math.PI/180;
     var drag=0,vel=0,dragging=false,lastX=0,hover=false,t=0,last=null;
     function size(){
       var w=stage.clientWidth,h=stage.clientHeight;
-      A[0]=w*0.185;A[1]=w*0.315;A[2]=w*0.455;
-      Bv[0]=h*0.155;Bv[1]=h*0.27;Bv[2]=h*0.40;
+      A[0]=w*0.17;A[1]=w*0.285;A[2]=w*0.405;
+      Bv[0]=h*0.12;Bv[1]=h*0.225;Bv[2]=h*0.355;
       for(var i=0;i<3;i++){if(paths[i]){paths[i].style.width=(A[i]*2)+'px';paths[i].style.height=(Bv[i]*2)+'px';}}
     }
     size();addEventListener('resize',size);
@@ -60,11 +62,14 @@
         var p=planets[i],o=+p.getAttribute('data-o'),off=+p.getAttribute('data-off');
         var th=((reduce?0:SPD[o]*t)+off+drag)*Math.PI/180;
         var x=A[o]*Math.cos(th),y=Bv[o]*Math.sin(th);
-        var s=Math.sin(th);                       // 1 = front (bottom)
-        var sc=1+0.24*s;
-        p.style.transform='translate(calc(-50% + '+x.toFixed(1)+'px),calc(-50% + '+y.toFixed(1)+'px)) scale('+sc.toFixed(3)+')';
-        p.style.zIndex=String(Math.round(50+s*40));
-        p.style.opacity=(0.68+0.32*((s+1)/2)).toFixed(3);
+        var xr=x*Math.cos(TILT)-y*Math.sin(TILT),yr=x*Math.sin(TILT)+y*Math.cos(TILT);
+        var depth=Math.sin(th);                    // foreground at lower arc
+        var perspective=.80+.34*((depth+1)/2);
+        var sc=perspective*SIZE[i];
+        p.style.transform='translate(calc(-50% + '+xr.toFixed(1)+'px),calc(-50% + '+yr.toFixed(1)+'px)) scale('+sc.toFixed(3)+')';
+        p.style.zIndex=String(Math.round(50+depth*40));
+        p.style.opacity=(0.72+0.28*((depth+1)/2)).toFixed(3);
+        p.style.filter='brightness('+(0.94+0.06*((depth+1)/2)).toFixed(3)+') saturate('+(1.02+0.12*((depth+1)/2)).toFixed(3)+')';
       }
       requestAnimationFrame(frame);
     }
