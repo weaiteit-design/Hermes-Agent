@@ -13,10 +13,11 @@
     // gradient: ease in, hold, ease out — no abrupt edges
     if(grad&&glow){var gr=grad.getBoundingClientRect();var gt=grad.offsetHeight-innerHeight;
       var gp=Math.min(1,Math.max(0,(-gr.top)/gt));
-      var o=gp<.22?(gp/.22):(gp>.82?(1-(gp-.82)/.18):1);
+      var phase=(Math.min(.999999,gp)*3)%1; // three complete red→orange→pink moments across three scrolls
+      var o=phase<.18?(phase/.18):(phase>.82?(1-(phase-.82)/.18):1);
       o=Math.min(1,Math.max(0,o));
       var sm=(o*o*(3-2*o)).toFixed(3);glow.style.opacity=sm;
-      var gtx=grad.querySelector('.gtext');if(gtx){gtx.style.opacity=sm;gtx.style.color=gp<.62?'#ffffff':'#171717';}}
+      var gtx=grad.querySelector('.gtext');if(gtx){gtx.style.opacity=sm;gtx.style.color=phase<.62?'#ffffff':'#171717';}}
     var doc=document.documentElement,den=Math.max(1,doc.scrollHeight-innerHeight);
     progress.style.transform='scaleX('+Math.min(1,Math.max(0,scrollY/den)).toFixed(4)+')';}
   addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
