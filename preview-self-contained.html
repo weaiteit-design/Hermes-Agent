@@ -68,7 +68,7 @@ a{color:inherit;text-decoration:none}
 @media(max-width:720px){.index .row{grid-template-columns:30px 1fr auto}.index .row .c{display:none}.index .row .thumb{display:none}}
 
 /* GRADIENT moment */
-.grad{height:400vh;position:relative}
+.grad{height:200vh;position:relative}
 .grad .gpin{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .grad .glow{position:absolute;inset:-18%;opacity:0;
   background:radial-gradient(126% 98% at 50% 126%,#000 0%,#050000 12%,#2f0303 25%,#7d0d06 39%,#e93210 51%,#ff6a20 61%,#ffad78 72%,#f5b4cf 83%,#e8c4ec 91%,#f7f7f4 98%);
@@ -316,6 +316,12 @@ a{color:inherit;text-decoration:none}
   </div>
 </section>
 
+<!-- COLOR TRANSITION · WORK TO STUDIO -->
+<div class="grad"><div class="gpin">
+  <div class="glow"></div>
+  <div class="gtext"><div class="k">Film · stills · systems</div><h2>One studio. Every format.</h2></div>
+</div></div>
+
 <!-- STATEMENT -->
 <section class="sec statement">
   <div class="seclbl"><span>The studio</span><span>01</span></div>
@@ -345,6 +351,12 @@ a{color:inherit;text-decoration:none}
     <div class="row"><span class="t">Elegant, Muse &amp; Ascend — editorial covers</span><span class="r">Editorial</span><span class="y">2024–25</span></div>
   </div>
 </section>
+
+<!-- COLOR TRANSITION · STUDIO TO CONTACT -->
+<div class="grad"><div class="gpin">
+  <div class="glow"></div>
+  <div class="gtext"><div class="k">The next frame is yours</div><h2>Let’s make the eye believe.</h2></div>
+</div></div>
 
 <!-- DETAILS -->
 <section class="sec">
@@ -391,18 +403,19 @@ a{color:inherit;text-decoration:none}
   var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
   var progress=document.createElement('div');progress.className='scroll-progress';document.body.appendChild(progress);
   var wrap=document.getElementById('pinwrap'),track=document.getElementById('track');
-  var grad=document.querySelector('.grad'),glow=document.querySelector('.grad .glow');
+  var grads=[].slice.call(document.querySelectorAll('.grad'));
   function onScroll(){var rect=wrap.getBoundingClientRect();var total=wrap.offsetHeight-innerHeight;
     var p=Math.min(1,Math.max(0,(-rect.top)/total));var dist=track.scrollWidth-innerWidth;
     track.style.transform='translateX('+(-p*dist)+'px)';
-    // gradient: ease in, hold, ease out — no abrupt edges
-    if(grad&&glow){var gr=grad.getBoundingClientRect();var gt=grad.offsetHeight-innerHeight;
+    // three topic-change transitions: each runs once, in its own location
+    grads.forEach(function(grad){var glow=grad.querySelector('.glow');if(!glow)return;
+      var gr=grad.getBoundingClientRect(),gt=Math.max(1,grad.offsetHeight-innerHeight);
       var gp=Math.min(1,Math.max(0,(-gr.top)/gt));
-      var phase=(Math.min(.999999,gp)*3)%1; // three complete red→orange→pink moments across three scrolls
-      var o=phase<.18?(phase/.18):(phase>.82?(1-(phase-.82)/.18):1);
+      var o=gp<.20?(gp/.20):(gp>.84?(1-(gp-.84)/.16):1);
       o=Math.min(1,Math.max(0,o));
       var sm=(o*o*(3-2*o)).toFixed(3);glow.style.opacity=sm;
-      var gtx=grad.querySelector('.gtext');if(gtx){gtx.style.opacity=sm;gtx.style.color=phase<.62?'#ffffff':'#171717';}}
+      var gtx=grad.querySelector('.gtext');if(gtx){gtx.style.opacity=sm;gtx.style.color=gp<.62?'#ffffff':'#171717';}
+    });
     var doc=document.documentElement,den=Math.max(1,doc.scrollHeight-innerHeight);
     progress.style.transform='scaleX('+Math.min(1,Math.max(0,scrollY/den)).toFixed(4)+')';}
   addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();

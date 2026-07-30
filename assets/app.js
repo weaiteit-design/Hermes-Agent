@@ -6,18 +6,19 @@
   var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
   var progress=document.createElement('div');progress.className='scroll-progress';document.body.appendChild(progress);
   var wrap=document.getElementById('pinwrap'),track=document.getElementById('track');
-  var grad=document.querySelector('.grad'),glow=document.querySelector('.grad .glow');
+  var grads=[].slice.call(document.querySelectorAll('.grad'));
   function onScroll(){var rect=wrap.getBoundingClientRect();var total=wrap.offsetHeight-innerHeight;
     var p=Math.min(1,Math.max(0,(-rect.top)/total));var dist=track.scrollWidth-innerWidth;
     track.style.transform='translateX('+(-p*dist)+'px)';
-    // gradient: ease in, hold, ease out — no abrupt edges
-    if(grad&&glow){var gr=grad.getBoundingClientRect();var gt=grad.offsetHeight-innerHeight;
+    // three topic-change transitions: each runs once, in its own location
+    grads.forEach(function(grad){var glow=grad.querySelector('.glow');if(!glow)return;
+      var gr=grad.getBoundingClientRect(),gt=Math.max(1,grad.offsetHeight-innerHeight);
       var gp=Math.min(1,Math.max(0,(-gr.top)/gt));
-      var phase=(Math.min(.999999,gp)*3)%1; // three complete red→orange→pink moments across three scrolls
-      var o=phase<.18?(phase/.18):(phase>.82?(1-(phase-.82)/.18):1);
+      var o=gp<.20?(gp/.20):(gp>.84?(1-(gp-.84)/.16):1);
       o=Math.min(1,Math.max(0,o));
       var sm=(o*o*(3-2*o)).toFixed(3);glow.style.opacity=sm;
-      var gtx=grad.querySelector('.gtext');if(gtx){gtx.style.opacity=sm;gtx.style.color=phase<.62?'#ffffff':'#171717';}}
+      var gtx=grad.querySelector('.gtext');if(gtx){gtx.style.opacity=sm;gtx.style.color=gp<.62?'#ffffff':'#171717';}
+    });
     var doc=document.documentElement,den=Math.max(1,doc.scrollHeight-innerHeight);
     progress.style.transform='scaleX('+Math.min(1,Math.max(0,scrollY/den)).toFixed(4)+')';}
   addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
