@@ -35,13 +35,13 @@
     var paths=[].slice.call(stage.querySelectorAll('.opath'));
     var A=[0,0,0],Bv=[0,0,0];
     var SPD=[18,11,6];                // elegant inner-to-outer orbit speeds
-    var SIZE=[.72,.90,1.12,.78,.98,1.08,.74,1.16,.84]; // planet hierarchy, not uniform discs
+    var SIZE=[.70,.86,1.04,.76,.92,1.00,.72,1.05,.80]; // compact hierarchy, safely inside viewport
     var TILT=-7*Math.PI/180;
     var drag=0,vel=0,dragging=false,lastX=0,hover=false,t=0,last=null;
     function size(){
       var w=stage.clientWidth,h=stage.clientHeight;
-      A[0]=w*0.17;A[1]=w*0.285;A[2]=w*0.405;
-      Bv[0]=h*0.12;Bv[1]=h*0.225;Bv[2]=h*0.355;
+      A[0]=w*0.155;A[1]=w*0.255;A[2]=w*0.355;
+      Bv[0]=h*0.115;Bv[1]=h*0.205;Bv[2]=h*0.315;
       for(var i=0;i<3;i++){if(paths[i]){paths[i].style.width=(A[i]*2)+'px';paths[i].style.height=(Bv[i]*2)+'px';}}
     }
     size();addEventListener('resize',size);
