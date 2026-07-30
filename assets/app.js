@@ -83,6 +83,11 @@
         var pc=p.querySelector('.pc'),diam=pc?pc.offsetWidth:148;
         states.push({p:p,x:xr,y:yr,sc:sc,r:diam*sc*.5,depth:depth});
       }
+      // Optically recenter the moving visual mass, not only the mathematical orbit origin.
+      var mass=0,massX=0;
+      for(var m=0;m<states.length;m++){var weight=states[m].r*states[m].r;mass+=weight;massX+=states[m].x*weight;}
+      var balance=mass?Math.max(-stageW*.065,Math.min(stageW*.065,-massX/mass)) : 0;
+      for(var n=0;n<states.length;n++)states[n].x+=balance;
       // Reserve a clean zone around AITEIT, then resolve sphere-to-sphere collisions.
       for(var c=0;c<states.length;c++){
         var s=states[c],d=Math.sqrt(s.x*s.x+s.y*s.y)||.001,min=(98+s.r)*(.38+.62*entry);

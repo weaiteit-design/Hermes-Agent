@@ -115,7 +115,7 @@ a{color:inherit;text-decoration:none}
 /* brand solar system — cinematic depth, diagram-like placement, nearly invisible paths */
 .brandsec{padding-top:clamp(18px,2.5vh,30px)!important;padding-bottom:0!important;padding-left:0!important;padding-right:0!important}
 .brandsec .seclbl{margin-bottom:0;padding:0 clamp(20px,4vw,56px);position:relative;z-index:90}
-.brandstage{--enter:0;height:min(96svh,1120px);min-height:680px;overflow:hidden;position:relative;cursor:grab;touch-action:pan-y;
+.brandstage{--enter:0;width:100%;height:min(96svh,1120px);min-height:680px;overflow:hidden;position:relative;cursor:grab;touch-action:pan-y;
   background:linear-gradient(180deg,#fff 0%,#fbfaf8 56%,#f5f3ef 100%);isolation:isolate}
 .brandstage.grabbing{cursor:grabbing}
 .brandstage::before{content:"";position:absolute;inset:-8%;pointer-events:none;filter:blur(78px);opacity:.66;
@@ -136,7 +136,7 @@ a{color:inherit;text-decoration:none}
   background:none;box-shadow:none;animation:none}
 .sun::before{display:none}
 @keyframes sunpulse{0%,100%{opacity:1}50%{opacity:1}}
-.sun .s1{position:relative;font-family:var(--wide);font-weight:800;font-size:clamp(38px,5.2vw,78px);line-height:.9;letter-spacing:.1em;padding-left:.1em;color:#151515;
+.sun .s1{position:relative;font-family:var(--wide);font-weight:800;font-size:clamp(38px,5.2vw,78px);line-height:.9;letter-spacing:.1em;color:#151515;
   text-shadow:0 13px 34px rgba(20,20,20,.12)}
 .sun .s2{display:none}
 .planet{position:absolute;left:50%;top:50%;display:flex;flex-direction:column;align-items:center;gap:9px;will-change:transform,filter,opacity;transform-origin:center;perspective:700px}
