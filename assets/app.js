@@ -30,7 +30,7 @@
   function onScroll(){var rect=wrap.getBoundingClientRect();var pinH=pin?pin.getBoundingClientRect().height:innerHeight;
     var total=Math.max(1,wrap.offsetHeight-pinH);
     var p=Math.min(1,Math.max(0,(-rect.top)/total));var dist=Math.max(0,track.scrollWidth-document.documentElement.clientWidth);
-    track.style.transform='translateX('+(-p*dist)+'px)';
+    track.style.transform='translate3d('+(-p*dist)+'px,0,0)';
     // three topic-change transitions: each runs once, in its own location
     grads.forEach(function(grad){var glow=grad.querySelector('.glow');if(!glow)return;
       var gr=grad.getBoundingClientRect(),gt=Math.max(1,grad.offsetHeight-appHeight);
