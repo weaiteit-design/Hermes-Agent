@@ -1,0 +1,6 @@
+*.png
+.git
+.env*
+QA-REPORT.md
+README.md
+artifact-v13-self-contained.html
