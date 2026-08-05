@@ -1,0 +1,5 @@
+# Generated QA screenshots
+/*.png
+
+# Local tooling
+.DS_Store

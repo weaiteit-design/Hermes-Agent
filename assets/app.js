@@ -6,32 +6,57 @@
   var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
   var appWidth=innerWidth,appHeight=innerHeight;
   function syncViewport(){
-    appWidth=(outerWidth&&innerWidth>outerWidth*1.04)?outerWidth:innerWidth;
-    appHeight=(outerHeight&&innerHeight>outerHeight*1.04)?Math.max(560,outerHeight-60):innerHeight;
+    // Use the real page viewport. outerWidth/outerHeight describe the Chrome window frame
+    // and previously made the pinned hero shorter than the visible screen.
+    appWidth=document.documentElement.clientWidth||innerWidth;
+    appHeight=(window.visualViewport&&visualViewport.height)||innerHeight;
     document.documentElement.style.setProperty('--app-width',Math.round(appWidth)+'px');
     document.documentElement.style.setProperty('--app-height',Math.round(appHeight)+'px');
   }
   syncViewport();
-  var progress=document.createElement('div');progress.className='scroll-progress';document.body.appendChild(progress);
-  var wrap=document.getElementById('pinwrap'),track=document.getElementById('track');
-  function layoutPin(){if(!wrap||!track)return;wrap.style.height=(appHeight+Math.max(0,track.scrollWidth-appWidth))+'px';}
-  layoutPin();addEventListener('load',layoutPin);
+  var wrap=document.getElementById('pinwrap'),track=document.getElementById('track'),pin=wrap&&wrap.querySelector('.pin');
+  function layoutPin(){if(!wrap||!track||!pin)return;
+    var visibleW=document.documentElement.clientWidth,pinH=pin.getBoundingClientRect().height;
+    var horizontalTravel=Math.max(0,track.scrollWidth-visibleW);
+    // Give every still enough dwell time; the page cannot release until the full track has completed.
+    var viewingTravel=horizontalTravel+pinH*.65;
+    wrap.style.height=Math.ceil(pinH+viewingTravel)+'px';
+    wrap.dataset.horizontalTravel=Math.round(horizontalTravel);
+    wrap.dataset.viewingTravel=Math.round(viewingTravel);
+  }
+  layoutPin();requestAnimationFrame(function(){requestAnimationFrame(layoutPin);});addEventListener('load',layoutPin);
+  if(window.ResizeObserver&&wrap&&track){new ResizeObserver(function(){layoutPin();}).observe(track);}
   var grads=[].slice.call(document.querySelectorAll('.grad'));
-  function onScroll(){var rect=wrap.getBoundingClientRect();var total=wrap.offsetHeight-appHeight;
-    var p=Math.min(1,Math.max(0,(-rect.top)/total));var dist=track.scrollWidth-appWidth;
+  function onScroll(){var rect=wrap.getBoundingClientRect();var pinH=pin?pin.getBoundingClientRect().height:innerHeight;
+    var total=Math.max(1,wrap.offsetHeight-pinH);
+    var p=Math.min(1,Math.max(0,(-rect.top)/total));var dist=Math.max(0,track.scrollWidth-document.documentElement.clientWidth);
     track.style.transform='translateX('+(-p*dist)+'px)';
     // three topic-change transitions: each runs once, in its own location
     grads.forEach(function(grad){var glow=grad.querySelector('.glow');if(!glow)return;
       var gr=grad.getBoundingClientRect(),gt=Math.max(1,grad.offsetHeight-appHeight);
       var gp=Math.min(1,Math.max(0,(-gr.top)/gt));
-      var o=gp<.20?(gp/.20):(gp>.84?(1-(gp-.84)/.16):1);
-      o=Math.min(1,Math.max(0,o));
-      var sm=(o*o*(3-2*o)).toFixed(3);glow.style.opacity=sm;
-      var gtx=grad.querySelector('.gtext');if(gtx){gtx.style.opacity=sm;gtx.style.color=gp<.62?'#ffffff':'#171717';}
+      // Exact reference rhythm: white → rising colour dome → black hold → rising inverse dome → white.
+      var first=Math.min(1,Math.max(0,gp/.38));
+      var second=Math.min(1,Math.max(0,(gp-.62)/.38));
+      var firstEase=first*first*first*(first*(first*6-15)+10);
+      var secondEase=second*second*second*(second*(second*6-15)+10);
+      glow.style.opacity='1';
+      glow.style.setProperty('--first-y',(82-82*firstEase).toFixed(2)+'%');
+      glow.style.setProperty('--first-scale',(.42+3.18*firstEase).toFixed(3));
+      glow.style.setProperty('--second-y',(82-82*secondEase).toFixed(2)+'%');
+      glow.style.setProperty('--second-scale',(.42+3.18*secondEase).toFixed(3));
+      var gtx=grad.querySelector('.gtext');if(gtx){
+        var textIn=Math.min(1,Math.max(0,(gp-.24)/.14));
+        var textOut=Math.min(1,Math.max(0,(.76-gp)/.14));
+        gtx.style.opacity=(textIn*textOut).toFixed(3);
+        gtx.style.color='#fff';
+      }
     });
-    var doc=document.documentElement,den=Math.max(1,doc.scrollHeight-appHeight);
-    progress.style.transform='scaleX('+Math.min(1,Math.max(0,scrollY/den)).toFixed(4)+')';}
-  addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',function(){syncViewport();layoutPin();onScroll();});onScroll();
+  }
+  var scrollQueued=false;
+  function scheduleScroll(){if(scrollQueued)return;scrollQueued=true;requestAnimationFrame(function(){scrollQueued=false;onScroll();});}
+  addEventListener('scroll',scheduleScroll,{passive:true});addEventListener('resize',function(){syncViewport();layoutPin();onScroll();});onScroll();
+
   // ensure videos play (autoplay fallback)
   document.querySelectorAll('video').forEach(function(v){v.muted=true;var pr=v.play();if(pr&&pr.catch)pr.catch(function(){});});
   // index hover thumb follows cursor
@@ -50,16 +75,21 @@
     var paths=[].slice.call(stage.querySelectorAll('.opath'));
     var ghost=stage.querySelector('.ghost'),wordmark=stage.querySelector('.sun');
     var entry=reduce?1:0;
-    var A=[0,0,0],Bv=[0,0,0],stageW=0,stageH=0;
-    var SPD=[17,10,5.5];               // calm inner-to-outer orbit speeds
-    var SIZE=[.72,.78,.84,.74,.80,.82,.72,.81,.75]; // controlled depth without oversized collisions
+    var A=[0,0,0],Bv=[0,0,0],stageW=0,stageH=0,compact=false;
+    var SPD=[12,8,5.5];                // natural inner-to-outer orbital speeds
+    var SIZE=[.84,.87,.90,.85,.89,.88,.83,.89,.85];
     var TILT=-7*Math.PI/180;
     var drag=0,vel=0,dragging=false,lastX=0,hover=false,t=0,last=null;
     function size(){
       stageW=stage.clientWidth;stageH=stage.clientHeight;
-      var w=Math.min(stageW,1440),h=stageH;
-      A[0]=w*0.14;A[1]=w*0.26;A[2]=w*0.38;
-      Bv[0]=h*0.10;Bv[1]=h*0.225;Bv[2]=h*0.35;
+      var w=Math.min(stageW,1440),h=stageH;compact=stageW<600;
+      if(compact){
+        A[0]=w*.14;A[1]=w*.25;A[2]=w*.36;
+        Bv[0]=h*.11;Bv[1]=h*.22;Bv[2]=h*.33;
+      }else{
+        A[0]=w*.17;A[1]=w*.30;A[2]=w*.425;
+        Bv[0]=h*.12;Bv[1]=h*.255;Bv[2]=h*.365;
+      }
       for(var i=0;i<3;i++){if(paths[i]){paths[i].style.width=(A[i]*2)+'px';paths[i].style.height=(Bv[i]*2)+'px';}}
     }
     function entryProgress(){
@@ -89,26 +119,9 @@
         var xr=(x*Math.cos(TILT)-y*Math.sin(TILT)),yr=(x*Math.sin(TILT)+y*Math.cos(TILT));
         var depth=Math.sin(th),perspective=.82+.28*((depth+1)/2);
         var reveal=.18+.82*entry;xr*=reveal;yr*=reveal;
-        var sc=perspective*SIZE[i]*(.76+.24*entry);
+        var sc=perspective*(compact?.60:SIZE[i])*(.76+.24*entry);
         var pc=p.querySelector('.pc'),diam=pc?pc.offsetWidth:148;
         states.push({p:p,x:xr,y:yr,sc:sc,r:diam*sc*.5,depth:depth});
-      }
-      // Optically recenter the moving visual mass, not only the mathematical orbit origin.
-      var mass=0,massX=0;
-      for(var m=0;m<states.length;m++){var weight=states[m].r*states[m].r;mass+=weight;massX+=states[m].x*weight;}
-      var balance=mass?Math.max(-stageW*.065,Math.min(stageW*.065,-massX/mass)) : 0;
-      for(var n=0;n<states.length;n++)states[n].x+=balance;
-      // Reserve a clean zone around AITEIT, then resolve sphere-to-sphere collisions.
-      for(var c=0;c<states.length;c++){
-        var s=states[c],d=Math.sqrt(s.x*s.x+s.y*s.y)||.001,min=(98+s.r)*(.38+.62*entry);
-        if(d<min){var push=min-d;s.x+=s.x/d*push;s.y+=s.y/d*push;}
-      }
-      for(var pass=0;pass<5;pass++)for(var a=0;a<states.length;a++)for(var b=a+1;b<states.length;b++){
-        var one=states[a],two=states[b],dx=two.x-one.x,dy=two.y-one.y,dist=Math.sqrt(dx*dx+dy*dy);
-        var gap=(one.r+two.r+16)*(.35+.65*entry);
-        if(dist<gap){if(dist<.001){dx=Math.cos((a+1)*(b+2));dy=Math.sin((a+1)*(b+2));dist=1;}
-          var move=(gap-dist)*.5,nx=dx/dist,ny=dy/dist;
-          one.x-=nx*move;one.y-=ny*move;two.x+=nx*move;two.y+=ny*move;}
       }
       for(var q=0;q<states.length;q++){
         var st=states[q],maxX=Math.max(40,stageW*.5-st.r-28),maxY=Math.max(40,stageH*.5-st.r-54);
