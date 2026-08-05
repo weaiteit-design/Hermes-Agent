@@ -166,3 +166,75 @@
     addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(par);}},{passive:true});par();
   }
 })();
+
+  // Complete Drive-backed motion library. Posters are lazy; masters load on click.
+  (function(){
+    var grid=document.getElementById('motion-grid'),filters=document.getElementById('motion-filters');
+    var count=document.getElementById('motion-count'),more=document.getElementById('motion-more');
+    if(!grid||!filters||!count||!more)return;
+    var state={items:[],filter:'All',expanded:false};
+    function make(tag,cls,text){var el=document.createElement(tag);if(cls)el.className=cls;if(text!=null)el.textContent=text;return el;}
+    function play(card,item){
+      if(card.classList.contains('playing'))return;
+      var launch=card.querySelector('.motion-launch');if(!launch)return;
+      var video=document.createElement('video');video.src=(item.video.startsWith('http')?item.video:'https://aiteitai-growth.187-127-167-128.sslip.io:8443/website-preview/'+item.video);video.poster=item.poster;video.controls=true;video.autoplay=true;
+      video.playsInline=true;video.preload='auto';video.setAttribute('aria-label',item.title);
+      launch.replaceWith(video);card.classList.add('playing');var result=video.play();if(result&&result.catch)result.catch(function(){});
+    }
+    function render(){
+      grid.textContent='';
+      var list=state.items.filter(function(item){return state.filter==='All'||item.category===state.filter;});
+      var visible=state.expanded?list:list.slice(0,12);
+      visible.forEach(function(item){
+        var card=make('article','motion-card');
+        var launch=make('button','motion-launch');launch.type='button';launch.setAttribute('aria-label','Play '+item.title);
+        launch.style.aspectRatio=item.width+' / '+item.height;
+        var img=document.createElement('img');img.src=item.poster;img.alt='Poster frame from '+item.title;img.loading='lazy';img.decoding='async';
+        img.width=item.width;img.height=item.height;
+        var mark=make('span','playmark','PLAY');
+        var meta=make('span','motion-meta');meta.append(make('span','motion-title',item.title),make('span','motion-cat',item.category));
+        launch.append(img,mark,meta);card.append(launch);launch.addEventListener('click',function(){play(card,item);});grid.append(card);
+      });
+      count.textContent=visible.length+' of '+list.length+' projects';
+      more.hidden=list.length<=12;more.textContent=state.expanded?'Show less':'Show the full library';
+    }
+    function setFilter(value){state.filter=value;state.expanded=false;[].slice.call(filters.children).forEach(function(b){
+      var active=b.getAttribute('data-filter')===value;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});render();}
+    fetch('media/web-video-catalog.json').then(function(response){if(!response.ok)throw new Error('catalog '+response.status);return response.json();}).then(function(items){
+      state.items=items.filter(function(item){return !item.shelf_hidden;});var categories=['All'].concat(Array.from(new Set(state.items.map(function(item){return item.category;}))));
+      categories.forEach(function(category){var button=make('button','motion-filter',category);button.type='button';button.setAttribute('data-filter',category);button.addEventListener('click',function(){setFilter(category);});filters.append(button);});
+      more.addEventListener('click',function(){state.expanded=!state.expanded;render();});setFilter('All');
+    }).catch(function(error){count.textContent='Library unavailable';grid.append(make('p','motion-error','The motion catalog could not load. Please use the full portfolio link below.'));console.error(error);});
+  })();
+  // project inquiry: qualify the brief, persist it through the private API, and return a reference.
+  (function(){
+    var form=document.getElementById('inquiry-form');if(!form)return;
+    var status=document.getElementById('inquiry-status'),button=form.querySelector('.form-submit');
+    var startedAt=Date.now();
+    function show(kind,title,body){
+      status.className='form-status show '+kind;status.textContent='';
+      var strong=document.createElement('strong');strong.textContent=title;status.append(strong,document.createTextNode(body));
+    }
+    function clearErrors(){[].slice.call(form.querySelectorAll('.field.invalid')).forEach(function(field){field.classList.remove('invalid');});}
+    [].slice.call(form.elements).forEach(function(input){input.addEventListener('input',function(){var field=input.closest('.field');if(field)field.classList.remove('invalid');});});
+    form.addEventListener('submit',function(event){
+      event.preventDefault();clearErrors();status.className='form-status';status.textContent='';
+      if(!form.checkValidity()){
+        var invalid=form.querySelector(':invalid');if(invalid){var field=invalid.closest('.field');if(field)field.classList.add('invalid');invalid.focus();}
+        show('error','A few details are missing.',' Check the highlighted field and try again.');return;
+      }
+      var data=new FormData(form),payload={};data.forEach(function(value,key){payload[key]=value;});
+      payload.started_at=startedAt;payload.source=location.href;payload.referrer=document.referrer;
+      button.disabled=true;button.textContent='Sending…';
+      fetch('api/project-inquiries',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+        .then(function(response){return response.json().catch(function(){return {error:'Unexpected response.'};}).then(function(body){if(!response.ok){var error=new Error(body.error||'Could not send this inquiry.');error.field=body.field;throw error;}return body;});})
+        .then(function(body){
+          form.reset();startedAt=Date.now();show('success','Brief received.',' Reference '+body.id+'. We will review the scope and reply to the email above, usually within two business days.');
+        })
+        .catch(function(error){
+          if(error.field){var input=form.elements[error.field];if(input){var field=input.closest('.field');if(field)field.classList.add('invalid');input.focus();}}
+          show('error','The brief was not sent.',' '+error.message+' You can also email weaiteit@gmail.com.');
+        })
+        .finally(function(){button.disabled=false;button.textContent='Send project brief →';});
+    });
+  })();

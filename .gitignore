@@ -1,6 +1,9 @@
 # Generated QA screenshots
 /*.png
 
+# Large media is served from the AITEIT media host
+/assets/portfolio-videos/
+
 # Local tooling
 .DS_Store
 .vercel
